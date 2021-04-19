@@ -113,28 +113,28 @@ Cài đặt môi trường:
 ### Một số service của Open edX
 | Service                            | URL                                 | Type           | Role         |
 |--|--|--|--|
-| `lms`_                             | http://localhost:18000/             | Python/Django  | Default      |
-| `studio`_                          | http://localhost:18010/             | Python/Django  | Default      |
-| `forum`_                           | http://localhost:44567/api/v1/      | Ruby/Sinatra   | Default      |
-| `discovery`_                       | http://localhost:18381/api-docs/    | Python/Django  | Default      |
-| `ecommerce`_                       | http://localhost:18130/dashboard/   | Python/Django  | Default      |
-| `credentials`_                     | http://localhost:18150/api/v2/      | Python/Django  | Default      |
-| `edx_notes_api`_                   | http://localhost:18120/api/v1/      | Python/Django  | Default      |
-| `frontend-app-payment`_            | http://localhost:1998/              | MFE (React.js) | Default      |
-| `frontend-app-publisher`_          | http://localhost:18400/             | MFE (React.js) | Default      |
-| `gradebook`_                       | http://localhost:1994/              | MFE (React.js) | Default      |
-| `registrar`_                       | http://localhost:18734/api-docs/    | Python/Django  | Extra        |
-| `program-console`_                 | http://localhost:1976/              | MFE (React.js) | Extra        |
-| `frontend-app-learning`_           | http://localhost:2000/              | MFE (React.js) | Extra        |
-| `frontend-app-library-authoring`_  | http://localhost:3001/              | MFE (React.js) | Extra        |
-| `course-authoring`_                | http://localhost:2001/              | MFE (React.js) | Extra        |
-| `xqueue`_                          | http://localhost:18040/api/v1/      | Python/Django  | Extra        |
+| `lms`                             | http://localhost:18000/             | Python/Django  | Default      |
+| `studio`                          | http://localhost:18010/             | Python/Django  | Default      |
+| `forum`                           | http://localhost:44567/api/v1/      | Ruby/Sinatra   | Default      |
+| `discovery`                       | http://localhost:18381/api-docs/    | Python/Django  | Default      |
+| `ecommerce`                      | http://localhost:18130/dashboard/   | Python/Django  | Default      |
+| `credentials`                     | http://localhost:18150/api/v2/      | Python/Django  | Default      |
+| `edx_notes_api`                   | http://localhost:18120/api/v1/      | Python/Django  | Default      |
+| `frontend-app-payment`            | http://localhost:1998/              | MFE (React.js) | Default      |
+| `frontend-app-publisher`          | http://localhost:18400/             | MFE (React.js) | Default      |
+| `gradebook`                       | http://localhost:1994/              | MFE (React.js) | Default      |
+| `registrar`                       | http://localhost:18734/api-docs/    | Python/Django  | Extra        |
+| `program-console`                 | http://localhost:1976/              | MFE (React.js) | Extra        |
+| `frontend-app-learning`           | http://localhost:2000/              | MFE (React.js) | Extra        |
+| `frontend-app-library-authoring`  | http://localhost:3001/              | MFE (React.js) | Extra        |
+| `course-authoring`                | http://localhost:2001/              | MFE (React.js) | Extra        |
+| `xqueue`                          | http://localhost:18040/api/v1/      | Python/Django  | Extra        |
 
 Some common service combinations include:
 
-* **lms**: LMS, along with dependencies **forum**, **discovery**, and some databases
-* **ecommerce**: Ecommerce, but also LMS as a dependency (for auth)
-* **studio+credentials**: Services can be combined to affect both at once 
+* `lms`: LMS, along with dependencies `forum`, `discovery`, and some databases
+* `ecommerce`: Ecommerce, but also LMS as a dependency (for auth)
+* `studio+credentials`: Services can be combined to affect both at once 
 
 # Troubleshoot
 ## Docker issue
