@@ -105,10 +105,10 @@ Cài đặt môi trường:
 	$ make dev.logs.<service>
 	
 	// Install and start Analytics Devstack ? koa
-	$ make pull
-	$ make pull.analytics_pipeline
-	$ make dev.up.analytics_pipeline
-	$ make analytics-pipeline-shell
+	//$ make pull
+	//$ make pull.analytics_pipeline
+	//$ make dev.up.analytics_pipeline
+	//$ make analytics-pipeline-shell
 
 ### Một số service của Open edX
 | Service                            | URL                                 | Type           | Role         |
