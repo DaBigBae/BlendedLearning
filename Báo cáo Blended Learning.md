@@ -27,7 +27,15 @@ Nhưng Blended Learning khác e-Learning ở chỗ phương pháp học tập n�
 		- Edumall
 		- Unica
 6. Ưu / nhược điểm của các hệ thống hiện nay
-
+|  | Ưu điểm | Nhược điểm |
+|--|--|--|
+|Coursera|  |  |
+|Future Learn|  |  |
+|Khan Academy|  |  |
+|Pearson Learning Studio|  |  |
+|Kyna|  |  |
+|Edumall|  |  |
+|Unica|  |  |
 
 7. Một số thuật ngữ khác
 - MOOCs (Massive Open Online Course): Khóa học mở trực tuyến cho đại chúng, được mở cho mọi người tham gia nhằm nâng cao tri thức của cộng đồng.
@@ -103,8 +111,9 @@ Cài đặt môi trường:
 	// To stop service, use make dev.stop.<service>, to both stop it and remove the container, use make dev.shell.<service>
 	$ make dev.shell.<service>
 	$ make dev.logs.<service>
+	$ make dev.stop
 	
-	// Install and start Analytics Devstack ? koa
+	// Install and start Analytics Devstack ? koa -> không có sẵn command cho bản koa devstack
 	//$ make pull
 	//$ make pull.analytics_pipeline
 	//$ make dev.up.analytics_pipeline
