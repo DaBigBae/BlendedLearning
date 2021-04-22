@@ -27,6 +27,7 @@ Nhưng Blended Learning khác e-Learning ở chỗ phương pháp học tập n�
 		- Edumall
 		- Unica
 6. Ưu / nhược điểm của các hệ thống hiện nay
+
 |  | Ưu điểm | Nhược điểm |
 |--|--|--|
 |Coursera|  |  |
