@@ -56,7 +56,7 @@ Cài đặt môi trường:
 > Nên thiết lập chạy docker cho non-root user để tránh các lỗi thực thi: permission denied, do các lệnh sau này sử dụng rất nhiều.
 
 ### Installation (env: Ubuntu 20.04, method: devstack):
-```console
+```bash
 	// ** Chuẩn hoá error handling
 	$ sudo apt update
 	$ sudo apt upgrade
