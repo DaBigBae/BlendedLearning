@@ -148,6 +148,48 @@ LMS is now using MySql 5.7 by default. You have to run make dev.pull.lms and mak
 | `course-authoring`                | http://localhost:2001/              | MFE (React.js) | Extra        |
 | `xqueue`                          | http://localhost:18040/api/v1/      | Python/Django  | Extra        |
 
+### Mô tả chức năng của từng service của Open edX
+| Service                            | URL                                 | Chức năng        |          |
+|--|--|--|--|
+| `lms`                             | http://localhost:18000/             | Python/Django  | Default      |
+| `studio`                          | http://localhost:18010/             | Python/Django  | Default      |
+| `forum`                           | http://localhost:44567/api/v1/      | Ruby/Sinatra   | Default      |
+| `discovery`                       | http://localhost:18381/api-docs/    | Python/Django  | Default      |
+| `ecommerce`                      | http://localhost:18130/dashboard/   | Python/Django  | Default      |
+| `credentials`                     | http://localhost:18150/api/v2/      | Python/Django  | Default      |
+| `edx_notes_api`                   | http://localhost:18120/api/v1/      | Python/Django  | Default      |
+| `frontend-app-payment`            | http://localhost:1998/              | MFE (React.js) | Default      |
+| `frontend-app-publisher`          | http://localhost:18400/             | MFE (React.js) | Default      |
+| `gradebook`                       | http://localhost:1994/              | MFE (React.js) | Default      |
+| `registrar`                       | http://localhost:18734/api-docs/    | Python/Django  | Extra        |
+| `program-console`                 | http://localhost:1976/              | MFE (React.js) | Extra        |
+| `frontend-app-learning`           | http://localhost:2000/              | MFE (React.js) | Extra        |
+| `frontend-app-library-authoring`  | http://localhost:3001/              | MFE (React.js) | Extra        |
+| `course-authoring`                | http://localhost:2001/              | MFE (React.js) | Extra        |
+| `xqueue`                          | http://localhost:18040/api/v1/      | Python/Django  | Extra        |
+
+### Các feature của Open edX (tham khảo trên [elearningindustry](https://elearningindustry.com/directory/elearning-software/open-edx/features))
+||Feature|Sub-feature|
+|--|--|--|
+|1|**Accounts**|-- Add a new user<br/>-- Archive Users<br/>-- Browse list of users<br/>-- Bulk User Actions<br/>-- Custom/Mandatory User profile fields<br/>-- Upload users|
+|2|**Activity grading**|-- Course History<br/>-- Gradebook<br/>-- Gradebook audit trail<br/>-- Gradebook comments<br/>-- Manual Grading ("Making")<br/>-- Multiple grading scales|
+|3|**Authentication**|-- Active Directory/LDAP Integration<br/>-- Custom User login page<br/>-- Manual Accounts<br/>-- No login<br/>-- SAML2/API Integration<br/>-- Self-Registration<br/>-- Self-Registration w.Admin Confirmation|
+|4|**Categories**|-- Assign Courses to categories<br/>-- Create new Categories<br/>-- Manage Categories<br/>-- Prices Categories (Bundle)|
+|5|Certificate management|-- Certification life-cycle<br/>-- Manage certification templates<br/>-- Predefined certification templates<br/>-- Unique Certificate by Course<br/>-- Unique Certication by curriculum|
+|6|**Compliance management**|-- Cerificate expiration notifications<br/>-- Certification Expiration Management<br/>-- Due Date notifications<br/>-- Soft/Hard Stop Due Dates|
+|7|**Creation**|-- Assignments Engine<br/>-- Build-In Authoring Tool<br/>-- Can reuse PPTs, PDFs, Videos<br/>-- Changing Course default settings<br/>-- Consume online video content<br/>-- Course backup Options<br/>-- Learning Paths (Curiculums)<br/>-- Scheduling LIVE events<br/>-- Survey Engine<br/>-- Tests Engine<br/>-- Upload courses|
+|8|**Enrollment**|-- Attendance Tracking<br/>-- Automated Enrollment (based on User data)<br/>-- Guest Access Settings<br/>-- Manual Enroollment<br/>-- Self-enrollment<br/>-- Survey enrollment (based on a response)|
+|9|**Format**|-- Course Discussions<br/>-- Learner Upload<br/>-- LIVE Chat Option<br/>-- Social Format<br/>-- Topics Format<br/>-- Video Conferencing Integration<br/>-- Weekly Format|
+|10|**Gamification**|-- Badge customization<br/>-- Badges<br/>-- Levels|
+|11|**Interface options|-- Block Management<br/>-- Language settings<br/>-- Media embedding settings<br/>-- Multilanguage Support|
+|12|**Learning types**|-- Asynchronous Instructor-led<br/>-- Asynchronous Self-paced<br/>-- Blended Learning<br/>-- Synchronous Virtual Classroom|
+|13|**Mobile learning**|-- Offline (disconnected Mobile app)<br/>-- Online (internet connected)|
+|14|**Reports**|-- Automated Report Scheduling<br/>-- Canned Reports<br/>-- Dashboards and Graphic Reports<br/>-- Email delivery of Reports<br/>-- Exporting Reports in variety of formats<br/>-- Grading Report Settings<br/>-- Training Record Maintenance|
+|15|**Roles**|-- Define roles<br/>-- Role Assignment<br/>-- System Permissions per role<br/>-- Team and Team hierarchies|
+|16|**Security**|-- Anti-spam<br/>-- Anti-virus<br/>-- IP Blocker<br/>-- Restrict registration to specific domains<br/>-- Strong Passwords|
+|17|**Shopping cart**|-- Built-In Shopping Cart<br/>-- Shopping Cart as Plug-In|
+|18|**System reports**|-- Automatic email reports in predefined intervals<br/>-- Custom reports generator<br/>-- Email notification settings<br/>-- Live Logs|
+
 Some common service combinations include:
 
 * `lms`: LMS, along with dependencies `forum`, `discovery`, and some databases
