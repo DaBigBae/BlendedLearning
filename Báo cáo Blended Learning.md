@@ -59,6 +59,10 @@ Tham khảo thêm: [Open edX Devstack](https://github.com/edx/devstack)
 
 ## Cài đặt Open edX (installation method: devstack, version: master)
 -- Môi trường cài đặt: cài đặt trên máy ảo VMware chạy HĐH Ubuntu 20.04 LTS, RAM 8GB, 75GB disk.
+
+## NOTE: 
+LMS is now using MySql 5.7 by default. You have to run make dev.pull.lms and make dev.provision.lms (more details in Getting Started) to fetch latest images and reprovision local copies of databases in order for an existing devstack setup to keep working.
+
 -- Cài đặt môi trường:
 * make: sudo apt-get install make
 * Python 3: sudo apt-get install build-essential
