@@ -121,12 +121,32 @@ LMS is now using MySql 5.7 by default. You have to run make dev.pull.lms and mak
 	$ make dev.shell.<service>
 	$ make dev.logs.<service>
 	$ make dev.stop
+
+## Cài đặt Open edX (installation method: native, version: master)
+-- Môi trường cài đặt: cài đặt trên máy ảo VMware chạy HĐH Ubuntu 20.04 LTS, RAM 8GB, 60GB disk.
+
+## NOTE: 
+Cài đặt trên môi trường sạch (mới vừa được cài đặt xong) để tránh xung đột hay lỗi không cần thiết.
+
+### Installation:
+	// ** Chuẩn hoá error handling
+	$ sudo apt update
+	$ sudo apt upgrade
+	$ sudo reboot
+
+	// ** Thiết lập môi trường
+	// * Đặt biến môi trường OPEN_RELEASE
+	$ cd ~
+	$ export OPEN_RELEASE=open-release/koa.3
+	$ vim config.yml
 	
-	// Install and start Analytics Devstack ? koa -> không có sẵn command cho bản koa devstack
-	//$ make pull
-	//$ make pull.analytics_pipeline
-	//$ make dev.up.analytics_pipeline
-	//$ make analytics-pipeline-shell
+	EDXAPP_LMS_BASE: "abc.xyz.org"
+	EDXAPP_CMS_BASE: "cms.abc.xyz.org"
+	
+	$ wget https://raw.githubusercontent.com/edx/configuration/$OPENEDX_RELEASE/util/install/ansible-bootstrap.sh -O - | sudo -E bash
+	$ wget https://raw.githubusercontent.com/edx/configuration/$OPENEDX_RELEASE/util/install/generate-passwords.sh -O - | bash
+	$ wget https://raw.githubusercontent.com/edx/configuration/$OPENEDX_RELEASE/util/install/native.sh -O - | bash
+	
 
 ### Một số service của Open edX
 | Service                            | URL                                 | Type           | Role         |
