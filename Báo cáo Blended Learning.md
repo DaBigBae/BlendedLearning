@@ -98,7 +98,17 @@ LMS is now using MySql 5.7 by default. You have to run make dev.pull.lms and mak
 	$ sudo usermod -aG docker ${USER}
 	$ su - ${USER}
 	$ id -nG
+	//checking
 	$ docker run hello-world
+	
+	//install docker compose
+	$ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+	$ sudo chmod +x /usr/local/bin/docker-compose
+	//if fail after install, pls check your path, and you can create symlink to ``/user/bin
+	$ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+	//check install
+	$ docker-compose --version
+	
 	
 	// Install venv	
 	$ sudo apt install python3-pip python3-venv
