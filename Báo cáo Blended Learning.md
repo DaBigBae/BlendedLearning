@@ -81,6 +81,8 @@ LMS is now using MySql 5.7 by default. You have to run make dev.pull.lms and mak
 	// ** Thiết lập môi trường
 	// * Install make and python3
 	$ sudo apt install make build-essential
+	$ sudo apt install default-jre
+	$ sudo apt install default-jdk
 	
 	// * Install docker
 	//uninstall old version, if necessary
