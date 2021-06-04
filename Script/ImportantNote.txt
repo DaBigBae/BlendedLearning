@@ -1,0 +1,46 @@
+*** Information about Open edX system:
+
+LMS         80
+CMS         18010
+Certs       18090
+Discovery   18381
+Ecommerce   18130
+edx-release 8099
+Forum       18080
+Xqueue      18040
+
+
+
+*** IMPPORTANT NOTES
+
+#1. Create superuser/staff account
+$ cd /edx/app/edxapp/edx-platform
+$ python ./manage.py lms manage_user CITDAdmin admin@citd.vn --staff --superuser --settings=production
+or
+$ python ./manage.py lms --settings production createsuperuser
+$ python ./manage.py lms --settings production changepassword CITDAdmin
+
+#2. Translate Language
+$ sudo -H -u edxapp bash
+$ source /edx/app/edxapp/edxapp_env
+$ cd /edx/app/edxapp/edx-platform
+$ paver i18n_dummy
+Commad above will pull all language in /edx/app/edxapp/edxplatform/conf/...yml
+Access <yourLMSSite>/update_lang/ -> select your language -> OK
+
+#3. Change logo
+Replace default logo at /edx/app/edxapp/edx-platform/lms/static/images, new logo file should be named logo.png
+
+edit file at path /edx/etc/lms.yml
+$ sed -i "s/.*"ENABLE_COMPREHENSIVE_THEMING".*/"ENABLE_COMPREHENSIVE_THEMING": true," /edx/etc/lms.yml
+
+run compileStaticAssets.sh
+
+#4. Setup SMTP email
+- Access https://myaccount.google.com/lesssecureapps and change setting for "Allow less secure apps" to "on".
+- Run SMTP.sh -u EMAILADDRESS -p PASS, to setup enviroment and setup.
+
+#5. Install Notes and Annotations
+- 
+
+#6. Install Ecommerce
