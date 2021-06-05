@@ -57,12 +57,12 @@ sed -i -e "s/.*EMAIL_HOST_PASSWORD.*/EMAIL_HOST_PASSWORD: $PASS/" /edx/etc/studi
 sed -i -e "s/.*EMAIL_HOST_USER.*/EMAIL_HOST_USER: $MAIL/" /edx/etc/studio.yml
 
 sed -i -e "s/.*EMAIL_BACKEND.*/EMAIL_BACKEND: django.core.mail.backends.smtp.EmailBackend/" /edx/etc/lms.yml
-sed -i -e "s/.*EMAIL_HOST.*/EMAIL_HOST: $SERVER/" /edx/etc/lms.yml
+sed -i -e "s/.*EMAIL_HOST\W.*/EMAIL_HOST: $SERVER/" /edx/etc/lms.yml
 sed -i -e "s/.*EMAIL_PORT.*/EMAIL_PORT: $PORT/" /edx/etc/lms.yml
 sed -i -e "s/.*EMAIL_USE_TLS.*/EMAIL_USE_TLS: $TLS/" /edx/etc/lms.yml
 
 sed -i -e "s/.*EMAIL_BACKEND.*/EMAIL_BACKEND: django.core.mail.backends.smtp.EmailBackend/" /edx/etc/studio.yml
-sed -i -e "s/.*EMAIL_HOST.*/EMAIL_HOST: $SERVER/" /edx/etc/studio.yml
+sed -i -e "s/EMAIL_HOST\W.*/EMAIL_HOST: $SERVER/" /edx/etc/studio.yml
 sed -i -e "s/.*EMAIL_PORT.*/EMAIL_PORT: $PORT/" /edx/etc/studio.yml
 sed -i -e "s/.*EMAIL_USE_TLS.*/EMAIL_USE_TLS: $TLS/" /edx/etc/studio.yml
 
