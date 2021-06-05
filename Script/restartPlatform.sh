@@ -24,6 +24,7 @@ Usage: restartPlatform.sh [OPTION] [-h]\nMain options:
 For example: ./restartPlatform.sh -l\nHelp option:
     -h  Help
     "
+    exit 1
 }
 
 while getopts :lcwah flag;
@@ -44,9 +45,9 @@ do
         h) #help
             show_help
         ;;
-        \?)
+        *)
             echo "Invalid option: -$OPTARG. USE -h flag for help."
-            exit
+            exit 1
         ;;
     esac
 done
