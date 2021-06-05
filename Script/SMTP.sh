@@ -19,7 +19,7 @@ For example: ./SMTP.sh test@gmail.com yourpass
 Help option:
     -h  Help
     "
-    exit
+    exit 1
 }
 
 while getopts :e:p:s:ot:h flag
@@ -42,10 +42,11 @@ do
         ;;
         h) #help
             show_help
+            exit 1
         ;;
-        \?)
+        *)
             echo "Invalid option: -$OPTARG. USE -h flag for help."
-            exit
+            exit 1
         ;;
     esac
 done
