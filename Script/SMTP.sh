@@ -19,7 +19,6 @@ For example: ./SMTP.sh test@gmail.com yourpass
 Help option:
     -h  Help
     "
-    exit 1
 }
 
 while getopts :e:p:s:ot:h flag
@@ -51,6 +50,7 @@ do
     esac
 done
 
+echo -e ">>> Change value in /edx/etc/lms.yml and /edx/etc/studio.yml\n"
 sed -i -e "s/.*EMAIL_HOST_PASSWORD.*/EMAIL_HOST_PASSWORD: $PASS/" /edx/etc/lms.yml
 sed -i -e "s/.*EMAIL_HOST_USER.*/EMAIL_HOST_USER: $MAIL/" /edx/etc/lms.yml
 
@@ -67,6 +67,7 @@ sed -i -e "s/EMAIL_HOST\W.*/EMAIL_HOST: $SERVER/" /edx/etc/studio.yml
 sed -i -e "s/.*EMAIL_PORT.*/EMAIL_PORT: $PORT/" /edx/etc/studio.yml
 sed -i -e "s/.*EMAIL_USE_TLS.*/EMAIL_USE_TLS: $TLS/" /edx/etc/studio.yml
 
+echo -e ">>> Restarting Open edX platform...\n"
 /edx/bin/supervisorctl restart lms
 /edx/bin/supervisorctl restart cms
 /edx/bin/supervisorctl restart edxapp_worker:
