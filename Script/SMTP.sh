@@ -21,7 +21,7 @@ Help option:
     "
 }
 
-while getopts :e:p:s:ot:h flag
+while getopts :e:p:s:o:th flag
 do
     case "$flag" in
         e) #Email
