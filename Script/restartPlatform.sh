@@ -15,17 +15,26 @@ restartPlatform(){
 
 show_help(){
     echo "
-Usage: restartPlatform.sh [OPTION] [-h]\nMain options:
+Usage: restartPlatform.sh [-l] [-c] [-w] [-a] [-h]
+
+Main options:
     -l  Restart LMS
     -c  Restart CMS
     -w  Restart edxapp_worker
     -a  Restart LMS, CMS and edxapp_worker
 
-For example: ./restartPlatform.sh -l\nHelp option:
+For example: ./restartPlatform.sh -l
+
+Help option:
     -h  Help
     "
-    exit 1
 }
+
+if (! getopts :lcwah flag);
+then
+    show_help
+    exit 1
+fi
 
 while getopts :lcwah flag;
 do
@@ -44,6 +53,7 @@ do
         ;;
         h) #help
             show_help
+            exit 1
         ;;
         *)
             echo "Invalid option: -$OPTARG. USE -h flag for help."

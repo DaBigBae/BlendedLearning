@@ -8,18 +8,28 @@ TLS="true"
 
 show_help(){
     echo "
-Usage: SMTP.sh [-e EMAILADDRESS] [-p PASSWORD] [OPTION]
+Usage: SMTP.sh [-e EMAIL] [-p PASSWORD] [-s MAILSEVER]
+               [-o MAILSERVERPORT] [-t] [-h] args
+
 Main options:
     -e Your service email you want to setup
     -p Your email password
     -s Email server (Default is smtp.gmail.com)
     -o Port email host service (Default is 587)
     -t Don't use TLS when transmit email
+
 For example: ./SMTP.sh test@gmail.com yourpass
+
 Help option:
     -h  Help
     "
 }
+
+if (! getopts :e:p:s:o:th flag);
+then
+    show_help
+    exit 1
+fi
 
 while getopts :e:p:s:o:th flag
 do
