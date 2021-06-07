@@ -1,5 +1,5 @@
 #!/bin/bash
-http://citd.demo.com/activate/5b96362ef1004fc581ee3cac7e884ea8?utm_source=student&utm_medium=email&utm_campaign=accountactivation&utm_content=40211f44-9a9e-4ae4-9a05-674275d51b9d
+http://localhost/activate/5b96362ef1004fc581ee3cac7e884ea8?utm_source=student&utm_medium=email&utm_campaign=accountactivation&utm_content=40211f44-9a9e-4ae4-9a05-674275d51b9d
 MAIL=''
 PASS=''
 SERVER="smtp.gmail.com"
