@@ -1,0 +1,90 @@
+AGGREGATE_PAGE_SIZE: 10
+ANALYTICS_DATABASE: reports
+API_AUTH_TOKEN: put-your-api-token-here
+API_ROOT: null
+BACKEND_SERVICE_EDX_OAUTH2_KEY: analytics_api-backend-service-key
+BACKEND_SERVICE_EDX_OAUTH2_PROVIDER_URL: http://citd.demo.com/oauth2
+BACKEND_SERVICE_EDX_OAUTH2_SECRET: analytics_api-backend-service-secret
+CACHES:
+    default:
+        BACKEND: django.core.cache.backends.memcached.MemcachedCache
+        KEY_PREFIX: analytics_api
+        LOCATION:
+        - memcache
+CSRF_COOKIE_SECURE: false
+DATABASES:
+    default:
+        ENGINE: django.db.backends.mysql
+        HOST: localhost
+        NAME: analytics-api
+        OPTIONS:
+            connect_timeout: 10
+            init_command: SET sql_mode='STRICT_TRANS_TABLES'
+        PASSWORD: password
+        PORT: '3306'
+        USER: api001
+    reports:
+        ENGINE: django.db.backends.mysql
+        HOST: localhost
+        NAME: reports
+        OPTIONS:
+            connect_timeout: 10
+            init_command: SET sql_mode='STRICT_TRANS_TABLES'
+        PASSWORD: password
+        PORT: '3306'
+        USER: reports001
+DATETIME_FORMAT: '%Y-%m-%dT%H%M%S'
+DATE_FORMAT: '%Y-%m-%d'
+DEFAULT_PAGE_SIZE: 25
+EDX_DRF_EXTENSIONS:
+    OAUTH2_USER_INFO_URL: http://citd.demo.com/user_info
+ELASTICSEARCH_AWS_ACCESS_KEY_ID: null
+ELASTICSEARCH_AWS_SECRET_ACCESS_KEY: null
+ELASTICSEARCH_CONNECTION_CLASS: null
+ELASTICSEARCH_CONNECTION_DEFAULT_REGION: us-east-1
+ELASTICSEARCH_LEARNERS_HOST: localhost
+ELASTICSEARCH_LEARNERS_INDEX: roster_1_2
+ELASTICSEARCH_LEARNERS_UPDATE_INDEX: index_updates
+EXTRA_APPS: []
+JWT_AUTH:
+    JWT_AUTH_COOKIE_HEADER_PAYLOAD: edx-jwt-cookie-header-payload
+    JWT_AUTH_COOKIE_SIGNATURE: edx-jwt-cookie-signature
+    JWT_AUTH_REFRESH_COOKIE: edx-jwt-refresh-cookie
+    JWT_ISSUERS:
+    -   AUDIENCE: utdrXD6JhpPTbGqrYW5zHFnLkiW2hrLu3Uu
+        ISSUER: http://citd.demo.com/oauth2
+        SECRET_KEY: 2uJPOaWh2L74Q9FNDhLF3ac4KQ0nhIDIPVtItbIun4N0nW7LC8Hhm53oD9iRTNH02StgZfllpOYiQWbvFYKc3Hn30xwzQA5LQY6N
+    JWT_PRIVATE_SIGNING_JWK: '{"kty": "RSA", "kid": "11EJ9BTZ", "e": "AQAB", "n":
+        "sYVNeBg9EKpAiHJ2FQi43E5r0bAGT_4JgNMd3vaQxREvSiOHGeio4KMvqKPcRGSr4tTIQFEvZVr_42SNysFk6bieB241L4XW5U8xsTKAgi3abZ5zettILWlUJUoVoU231Yh5H03vxXbjFREIUG8rgY68ZkvJvRMckGmFDDsG-0pg-jNUSpCvuDqcvtcEgMH2egccln43AgO2vcnQzLyJ3TFeqy5ZsM3BNhuSmcFf2KQFulgDR6J9CCjC1aDQRh1H0fj2MdMjIGhJfALiYy1FIkCmbldmofIDHPEBVHSyl3UZTZyHQ0EUTUodgb_ztSoMDLJ7sRdMIRY8fkF1emGaPQ",
+        "d": "HiY4JoXjVSG9LQ9Xi7H8B3qQKEA_ijVocscoQxZYNwf4opxPFTDlAaXlcbxGrBz27mLaEcZYCNxAKmQJCt72nxU6TaPDh6sw-KgPFfuwRKu59bUcAskcRI4net_OtaMH7k2r2Iu5ha1v2sOWSGbhGjNePvdvL1wAFWy-annZ8TKDtcAir-1eZhrvX7egInC6XeEAYK3ajInGhOHP3wMV-V-_T3blNiHIleibUhhUmtDOOU8AlveY7uYkD2wngV4jMQSLTnQ1H4v1NwrQ0dqcM1qu8xoaZwLfb6et6tz9sLZLn6fezRN0PVKPsmRAsi4IiwJ8CuIINDEd1SqXTe-GIQ",
+        "p": "zJIYXvlelPGw93vSR3O0ghYdB8J831NcqaEYkT3sDM3j0TVYuwMHzsF7PBzT5FyaZPErggRdnJQbMebsR5iOobmUQLKfQi574UbtccFXZ1yTfm-B3UQPStGGl3wAEws9VZb2La1bEBL5NCL2fuVyc5E_TDETNpQdvmhALbsEuA0",
+        "q": "3iZOZh5abWc1Aav3h0mLnQRgP68qZ003uBP00OjZLsrK8Y_1IxmS3vKACm8uiGsoY7UCXxvR6gtbHHK7IvL0vmzybTs56hTklMISfNdYoXqVocL8vWDYpazxpqf8RnP84IuAj-mW0hrPkkhIYQh2zMV8YmD51fNtfgWejdPWLvE"}'
+    JWT_PUBLIC_SIGNING_JWK_SET: '{"keys": [{"kty": "RSA", "kid": "11EJ9BTZ", "e":
+        "AQAB", "n": "sYVNeBg9EKpAiHJ2FQi43E5r0bAGT_4JgNMd3vaQxREvSiOHGeio4KMvqKPcRGSr4tTIQFEvZVr_42SNysFk6bieB241L4XW5U8xsTKAgi3abZ5zettILWlUJUoVoU231Yh5H03vxXbjFREIUG8rgY68ZkvJvRMckGmFDDsG-0pg-jNUSpCvuDqcvtcEgMH2egccln43AgO2vcnQzLyJ3TFeqy5ZsM3BNhuSmcFf2KQFulgDR6J9CCjC1aDQRh1H0fj2MdMjIGhJfALiYy1FIkCmbldmofIDHPEBVHSyl3UZTZyHQ0EUTUodgb_ztSoMDLJ7sRdMIRY8fkF1emGaPQ"}]}'
+    JWT_SIGNING_ALGORITHM: RS512
+LANGUAGE_CODE: en-us
+LMS_BASE_URL: http://127.0.0.1:8000/
+MAX_PAGE_SIZE: 100
+MEDIA_STORAGE_BACKEND:
+    DEFAULT_FILE_STORAGE: django.core.files.storage.FileSystemStorage
+    MEDIA_ROOT: /edx/var/analytics_api/media
+    MEDIA_URL: /media/
+REPORT_DOWNLOAD_BACKEND:
+    COURSE_REPORT_FILE_LOCATION_TEMPLATE: '{course_id}_{report_name}.csv'
+    DEFAULT_FILE_STORAGE: django.core.files.storage.FileSystemStorage
+    MEDIA_ROOT: /edx/var/analytics_api/static/reports
+    MEDIA_URL: http://localhost:8100/static/reports/
+SECRET_KEY: thJ8sjMXctixkGfhhmpn6svEgMLM6VGx109xh5KOQRFz669QGi4U8wJwgxv2dUqIoZhnfoB4hfcBdifSmu2lJZKTKSTq6Az4Lexq
+SESSION_EXPIRE_AT_BROWSER_CLOSE: false
+SOCIAL_AUTH_EDX_OAUTH2_ISSUER: http://citd.demo.com
+SOCIAL_AUTH_EDX_OAUTH2_KEY: analytics_api-sso-key
+SOCIAL_AUTH_EDX_OAUTH2_LOGOUT_URL: http://citd.demo.com/logout
+SOCIAL_AUTH_EDX_OAUTH2_SECRET: analytics_api-sso-secret
+SOCIAL_AUTH_EDX_OAUTH2_URL_ROOT: http://citd.demo.com
+SOCIAL_AUTH_REDIRECT_IS_HTTPS: false
+STATICFILES_DIRS:
+- static
+STATICFILES_STORAGE: django.contrib.staticfiles.storage.StaticFilesStorage
+STATIC_ROOT: /edx/var/analytics_api/staticfiles
+TIME_ZONE: UTC
+

@@ -1,0 +1,97 @@
+API_ROOT: null
+AWS_SES_REGION_ENDPOINT: email.us-east-1.amazonaws.com
+AWS_SES_REGION_NAME: us-east-1
+BACKEND_SERVICE_EDX_OAUTH2_KEY: discovery-backend-service-key
+BACKEND_SERVICE_EDX_OAUTH2_PROVIDER_URL: http://citd.demo.com/oauth2
+BACKEND_SERVICE_EDX_OAUTH2_SECRET: discovery-backend-service-secret
+CACHES:
+    default:
+        BACKEND: django.core.cache.backends.memcached.MemcachedCache
+        KEY_PREFIX: discovery
+        LOCATION:
+        - memcache
+CORS_ORIGIN_WHITELIST: []
+CSRF_COOKIE_SECURE: false
+DATABASES:
+    default:
+        ATOMIC_REQUESTS: 'false'
+        CONN_MAX_AGE: 60
+        ENGINE: django.db.backends.mysql
+        HOST: localhost
+        NAME: discovery
+        OPTIONS:
+            connect_timeout: 10
+            init_command: SET sql_mode='STRICT_TRANS_TABLES'
+        PASSWORD: nZhWJM9kV6PRYo6WTRZl9VBNNBvedhCLEOK
+        PORT: 3306
+        USER: discov001
+    read_replica:
+        ATOMIC_REQUESTS: 'false'
+        CONN_MAX_AGE: 60
+        ENGINE: django.db.backends.mysql
+        HOST: localhost
+        NAME: discovery
+        OPTIONS:
+            connect_timeout: 10
+            init_command: SET sql_mode='STRICT_TRANS_TABLES'
+        PASSWORD: nZhWJM9kV6PRYo6WTRZl9VBNNBvedhCLEOK
+        PORT: 3306
+        USER: discov001
+DEFAULT_PARTNER_ID: 1
+EDX_DRF_EXTENSIONS:
+    OAUTH2_USER_INFO_URL: http://citd.demo.com/user_info
+ELASTICSEARCH_INDEX_NAME: catalog
+ELASTICSEARCH_URL: http://127.0.0.1:9200/
+EMAIL_BACKEND: django_ses.SESBackend
+EMAIL_HOST: localhost
+EMAIL_HOST_PASSWORD: JMYMc22cXPjSNcETT1dJ9Om0c4kfM2shHjS
+EMAIL_HOST_USER: ''
+EMAIL_PORT: 25
+EMAIL_USE_TLS: false
+ENABLE_PUBLISHER: false
+EXTRA_APPS: []
+JWT_AUTH:
+    JWT_AUTH_COOKIE_HEADER_PAYLOAD: edx-jwt-cookie-header-payload
+    JWT_AUTH_COOKIE_SIGNATURE: edx-jwt-cookie-signature
+    JWT_AUTH_REFRESH_COOKIE: edx-jwt-refresh-cookie
+    JWT_ISSUERS:
+    -   AUDIENCE: utdrXD6JhpPTbGqrYW5zHFnLkiW2hrLu3Uu
+        ISSUER: http://citd.demo.com/oauth2
+        SECRET_KEY: 2uJPOaWh2L74Q9FNDhLF3ac4KQ0nhIDIPVtItbIun4N0nW7LC8Hhm53oD9iRTNH02StgZfllpOYiQWbvFYKc3Hn30xwzQA5LQY6N
+    JWT_PRIVATE_SIGNING_JWK: '{"kty": "RSA", "kid": "11EJ9BTZ", "e": "AQAB", "n":
+        "sYVNeBg9EKpAiHJ2FQi43E5r0bAGT_4JgNMd3vaQxREvSiOHGeio4KMvqKPcRGSr4tTIQFEvZVr_42SNysFk6bieB241L4XW5U8xsTKAgi3abZ5zettILWlUJUoVoU231Yh5H03vxXbjFREIUG8rgY68ZkvJvRMckGmFDDsG-0pg-jNUSpCvuDqcvtcEgMH2egccln43AgO2vcnQzLyJ3TFeqy5ZsM3BNhuSmcFf2KQFulgDR6J9CCjC1aDQRh1H0fj2MdMjIGhJfALiYy1FIkCmbldmofIDHPEBVHSyl3UZTZyHQ0EUTUodgb_ztSoMDLJ7sRdMIRY8fkF1emGaPQ",
+        "d": "HiY4JoXjVSG9LQ9Xi7H8B3qQKEA_ijVocscoQxZYNwf4opxPFTDlAaXlcbxGrBz27mLaEcZYCNxAKmQJCt72nxU6TaPDh6sw-KgPFfuwRKu59bUcAskcRI4net_OtaMH7k2r2Iu5ha1v2sOWSGbhGjNePvdvL1wAFWy-annZ8TKDtcAir-1eZhrvX7egInC6XeEAYK3ajInGhOHP3wMV-V-_T3blNiHIleibUhhUmtDOOU8AlveY7uYkD2wngV4jMQSLTnQ1H4v1NwrQ0dqcM1qu8xoaZwLfb6et6tz9sLZLn6fezRN0PVKPsmRAsi4IiwJ8CuIINDEd1SqXTe-GIQ",
+        "p": "zJIYXvlelPGw93vSR3O0ghYdB8J831NcqaEYkT3sDM3j0TVYuwMHzsF7PBzT5FyaZPErggRdnJQbMebsR5iOobmUQLKfQi574UbtccFXZ1yTfm-B3UQPStGGl3wAEws9VZb2La1bEBL5NCL2fuVyc5E_TDETNpQdvmhALbsEuA0",
+        "q": "3iZOZh5abWc1Aav3h0mLnQRgP68qZ003uBP00OjZLsrK8Y_1IxmS3vKACm8uiGsoY7UCXxvR6gtbHHK7IvL0vmzybTs56hTklMISfNdYoXqVocL8vWDYpazxpqf8RnP84IuAj-mW0hrPkkhIYQh2zMV8YmD51fNtfgWejdPWLvE"}'
+    JWT_PUBLIC_SIGNING_JWK_SET: '{"keys": [{"kty": "RSA", "kid": "11EJ9BTZ", "e":
+        "AQAB", "n": "sYVNeBg9EKpAiHJ2FQi43E5r0bAGT_4JgNMd3vaQxREvSiOHGeio4KMvqKPcRGSr4tTIQFEvZVr_42SNysFk6bieB241L4XW5U8xsTKAgi3abZ5zettILWlUJUoVoU231Yh5H03vxXbjFREIUG8rgY68ZkvJvRMckGmFDDsG-0pg-jNUSpCvuDqcvtcEgMH2egccln43AgO2vcnQzLyJ3TFeqy5ZsM3BNhuSmcFf2KQFulgDR6J9CCjC1aDQRh1H0fj2MdMjIGhJfALiYy1FIkCmbldmofIDHPEBVHSyl3UZTZyHQ0EUTUodgb_ztSoMDLJ7sRdMIRY8fkF1emGaPQ"}]}'
+    JWT_SIGNING_ALGORITHM: RS512
+LANGUAGE_CODE: en
+MEDIA_STORAGE_BACKEND:
+    DEFAULT_FILE_STORAGE: django.core.files.storage.FileSystemStorage
+    MEDIA_ROOT: /edx/var/discovery/media
+    MEDIA_URL: /media/
+OPENEXCHANGERATES_API_KEY: ''
+PARLER_DEFAULT_LANGUAGE_CODE: en
+PARLER_LANGUAGES:
+    1:
+    -   code: en
+    default:
+        fallbacks:
+        - en
+        hide_untranslated: 'False'
+PLATFORM_NAME: Your Platform Name Here
+PUBLISHER_FROM_EMAIL: null
+SECRET_KEY: 7UDARyQcDLYD43pCpgbQamgRd4qNtyTAZoGPe0PKhSVjq4YoqY03LzzxZwaDbvmeh5ikZukaw540sP47eKSUAKe7GeBLPkVQ4EtA
+SESSION_EXPIRE_AT_BROWSER_CLOSE: false
+SOCIAL_AUTH_EDX_OAUTH2_ISSUER: http://citd.demo.com
+SOCIAL_AUTH_EDX_OAUTH2_KEY: discovery-sso-key
+SOCIAL_AUTH_EDX_OAUTH2_LOGOUT_URL: http://citd.demo.com/logout
+SOCIAL_AUTH_EDX_OAUTH2_SECRET: discovery-sso-secret
+SOCIAL_AUTH_EDX_OAUTH2_URL_ROOT: http://citd.demo.com
+SOCIAL_AUTH_REDIRECT_IS_HTTPS: false
+STATICFILES_STORAGE: django.contrib.staticfiles.storage.StaticFilesStorage
+STATIC_ROOT: /edx/var/discovery/staticfiles
+TIME_ZONE: UTC
+USERNAME_REPLACEMENT_WORKER: OVERRIDE THIS WITH A VALID USERNAME
+

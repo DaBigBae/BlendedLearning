@@ -1,0 +1,66 @@
+---
+# This file is created and updated by ansible, edit at your peril
+
+
+APPLICATION_NAME: Insights
+BACKEND_SERVICE_EDX_OAUTH2_KEY: insights-backend-service-key
+BACKEND_SERVICE_EDX_OAUTH2_PROVIDER_URL: http://127.0.0.1:8000/oauth2
+BACKEND_SERVICE_EDX_OAUTH2_SECRET: insights-backend-service-secret
+CACHES:
+    default:
+        BACKEND: django.core.cache.backends.memcached.MemcachedCache
+        KEY_PREFIX: default_env-default_deployment-insights
+        LOCATION:
+        - 127.0.0.1:11211
+CDN_DOMAIN: null
+CMS_COURSE_SHORTCUT_BASE_URL: http://127.0.0.1:8000/course
+COURSE_API_URL: http://127.0.0.1:8000/api/courses/v1/
+CSRF_COOKIE_NAME: insights_csrftoken
+CSRF_COOKIE_SECURE: false
+DATABASES:
+    default:
+        ENGINE: django.db.backends.mysql
+        HOST: 127.0.0.1
+        NAME: dashboard
+        OPTIONS:
+            connect_timeout: 10
+            init_command: SET sql_mode='STRICT_TRANS_TABLES'
+        PASSWORD: ddOYsnXKhhU9PgH19Wklta0Qeo14fh5Yd2W
+        PORT: 3306
+        USER: rosencrantz
+DATA_API_AUTH_TOKEN: changeme
+DATA_API_URL: http://127.0.0.1:8100/api/v0
+DOCUMENTATION_LOAD_ERROR_URL: http://127.0.0.1/en/latest/Reference.html#error-conditions
+EMAIL_HOST: smtp.example.com
+EMAIL_HOST_PASSWORD: rrg3Pn7wDDM4x0d75uYLCgydW0dQSB8bmjV
+EMAIL_HOST_USER: mail_user
+EMAIL_PORT: 587
+ENABLE_AUTO_AUTH: false
+GRADING_POLICY_API_URL: http://127.0.0.1:8000/api/grades/v1/
+HELP_URL: http://127.0.0.1/en/latest
+LANGUAGE_CODE: en-us
+LANGUAGE_COOKIE_NAME: insights_language
+LEARNER_API_LIST_DOWNLOAD_FIELDS: null
+LMS_COURSE_SHORTCUT_BASE_URL: URL_FOR_LMS_COURSE_LIST_PAGE
+MODULE_PREVIEW_URL: http://127.0.0.1:8000/xblock
+OPEN_SOURCE_URL: http://set-me-please
+PLATFORM_NAME: edX
+PRIVACY_POLICY_URL: http://example.com/privacy-policy
+RESEARCH_URL: https://www.edx.org/research-pedagogy
+SECRET_KEY: ee9UgCurxkKc1BfMqrS3cYWinoV51MasUruIPo9T1xQbleejqPJB9WzW60A05wypNv37GHUtiZI7bTzI3tNWQs5Jr1R6wgkvStim
+SEGMENT_IGNORE_EMAIL_REGEX: null
+SEGMENT_IO_KEY: YOUR_KEY
+SESSION_COOKIE_NAME: insights_sessionid
+SESSION_EXPIRE_AT_BROWSER_CLOSE: false
+SOCIAL_AUTH_EDX_OAUTH2_ISSUER: http://127.0.0.1:8000
+SOCIAL_AUTH_EDX_OAUTH2_KEY: insights-sso-key
+SOCIAL_AUTH_EDX_OAUTH2_LOGOUT_URL: http://127.0.0.1:8000/logout
+SOCIAL_AUTH_EDX_OAUTH2_SECRET: insights-sso-secret
+SOCIAL_AUTH_EDX_OAUTH2_URL_ROOT: http://127.0.0.1:8000
+SOCIAL_AUTH_REDIRECT_IS_HTTPS: false
+STATICFILES_DIRS:
+- /edx/app/insights/edx_analytics_dashboard/analytics_dashboard/static
+STATIC_ROOT: /edx/var/insights/staticfiles
+SUPPORT_EMAIL: ''
+TERMS_OF_SERVICE_URL: http://example.com/terms-service
+TIME_ZONE: UTC

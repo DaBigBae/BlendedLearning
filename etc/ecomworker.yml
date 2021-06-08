@@ -1,0 +1,26 @@
+---
+# This file is created and updated by ansible, edit at your peril
+
+
+BROKER_URL: redis://:VaDTkSzG7VlGO1XeKU0eDjK22kib6P5Fbk1@127.0.0.1:6379
+ECOMMERCE_API_ROOT: http://127.0.0.1:8002/api/v2/
+JWT_ISSUER: ecommerce_worker
+JWT_SECRET_KEY: GTJN3lFgsDz9YmB2eMnjwFCx9ozDxUeFZTZzc6L4Sh0wsbn8ATsHgVhakmqTDWWOhUTZutZ3gg5BnB2U50DzBlY2YMHQMnhfxzq9
+MAX_FULFILLMENT_RETRIES: 11
+SAILTHRU:
+    SAILTHRU_ABANDONED_CART_DELAY: 60
+    SAILTHRU_ABANDONED_CART_TEMPLATE: null
+    SAILTHRU_CACHE_TTL_SECONDS: 3600
+    SAILTHRU_ENABLE: false
+    SAILTHRU_ENROLL_TEMPLATE: null
+    SAILTHRU_KEY: sailthru key here
+    SAILTHRU_MINIMUM_COST: 100
+    SAILTHRU_PURCHASE_TEMPLATE: null
+    SAILTHRU_RETRY_ATTEMPTS: 6
+    SAILTHRU_RETRY_SECONDS: 3600
+    SAILTHRU_SECRET: sailthru secret here
+    SAILTHRU_UPGRADE_TEMPLATE: null
+    templates:
+        assignment_email: Offer Assignment Email
+        course_refund: Course Refund
+SITE_OVERRIDES: null
