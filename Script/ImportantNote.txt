@@ -1,7 +1,7 @@
-*** Information about Open edX system:
+*** Thông tin về các cổng hệ thống Open edX:
 
-LMS         80
-CMS         18010
+LMS*         80
+CMS*        18010
 Certs       18090
 Discovery   18381
 Ecommerce   18130
@@ -9,35 +9,45 @@ edx-release 8099
 Forum       18080
 Xqueue      18040
 
-Files save password will stored at root folder.
+*: Các hệ thống chính: LMS - Learning Managerment System, CMS - Course Managerment System.
+
+Sau khi cài đặt hệ thống, các file chứa password sẽ nằm tại đường dẫn /root
 
 *** IMPPORTANT NOTES
 
-#1. Create superuser/staff account
+#1. Tạo tài khoản superuser/staff (bắt buộc)
+# Chuyển vùng làm việc về thư mục edx-platform
 $ cd /edx/app/edxapp/edx-platform
+
+# Chạy 1 trong hai lệnh sau để tạo tài khoản
 $ python ./manage.py lms manage_user CITDAdmin admin@citd.vn --staff --superuser --settings=production
-or
 $ python ./manage.py lms --settings production createsuperuser
+
+# Chạy lệnh sau để đổi pass
 $ python ./manage.py lms --settings production changepassword CITDAdmin
 
-#2. Translate Language
+#2. Đổi ngôn ngữ của hệ thống
+Hiện tại dự án dịch thuật hệ thống Open edX trên transifex đang tạm ngưng
+Phần lớn hệ thống đã được translate qua tiếng việt.
+Chạy các lệnh sau để cập nhật ngôn ngữ
 $ sudo -H -u edxapp bash
 $ source /edx/app/edxapp/edxapp_env
 $ cd /edx/app/edxapp/edx-platform
 $ paver i18n_dummy
-Command above will pull all language in /edx/app/edxapp/edxplatform/conf/...yml
-Access <yourLMSSite>/update_lang/ -> select your language -> OK
+Lệnh paver trên sẽ tải các ngôn ngữ được liệt kê sẵn trong mục 
+của file nằm tại đường dẫn /edx/app/edxapp/edxplatform/conf/...yml
+Truy cập vào <yourLMSSite>/update_lang/ -> Chọn ngôn ngữ -> OK
 
-#3. Change logo
-Replace default logo at /edx/app/edxapp/edx-platform/lms/static/images, new logo file should be named logo.png
-Edit file at path /edx/etc/lms.yml
-$ sed -i "s/.*ENABLE_COMPREHENSIVE_THEMING\W.*/"ENABLE_COMPREHENSIVE_THEMING": true," /edx/etc/lms.yml
-
-run compileStaticAssets.sh
+#3. Đổi logo
+Thay thế logo mặc định tại /edx/app/edxapp/edx-platform/lms/static/images, file logo mới nên được đặt tên là logo.png
+Chạy lệnh sau để hoàn tất cài đặt (yêu cầu quyền root)
+$ sudo ./compileStaticAssets.sh
 
 #4. Setup SMTP email
-- Access https://myaccount.google.com/lesssecureapps and change setting for "Allow less secure apps" to "on".
-- Run SMTP.sh -u EMAILADDRESS -p PASS, to setup enviroment and setup.
+- Truy cập https://myaccount.google.com/lesssecureapps (nếu sử dụng gmail) và thay đổi cài đặt cho lựa chọn "Allow less secure apps" về "on".
+- Chạy script sau để cài nhanh (áp dụng với gmail)
+$ sudo ./SMTP.sh -u EMAILADDRESS -p PASS
+- Chạy lệnh trên với option -h để biết thêm các lựa chọn khác
 
 #5. Install Notes and Annotations
 - 
