@@ -9,7 +9,7 @@ edx-release 8099
 Forum       18080
 Xqueue      18040
 
-
+Files save password will stored at root folder.
 
 *** IMPPORTANT NOTES
 
@@ -25,14 +25,13 @@ $ sudo -H -u edxapp bash
 $ source /edx/app/edxapp/edxapp_env
 $ cd /edx/app/edxapp/edx-platform
 $ paver i18n_dummy
-Commad above will pull all language in /edx/app/edxapp/edxplatform/conf/...yml
+Command above will pull all language in /edx/app/edxapp/edxplatform/conf/...yml
 Access <yourLMSSite>/update_lang/ -> select your language -> OK
 
 #3. Change logo
 Replace default logo at /edx/app/edxapp/edx-platform/lms/static/images, new logo file should be named logo.png
-
-edit file at path /edx/etc/lms.yml
-$ sed -i "s/.*"ENABLE_COMPREHENSIVE_THEMING".*/"ENABLE_COMPREHENSIVE_THEMING": true," /edx/etc/lms.yml
+Edit file at path /edx/etc/lms.yml
+$ sed -i "s/.*ENABLE_COMPREHENSIVE_THEMING\W.*/"ENABLE_COMPREHENSIVE_THEMING": true," /edx/etc/lms.yml
 
 run compileStaticAssets.sh
 
