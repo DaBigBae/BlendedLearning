@@ -5,6 +5,11 @@
 cd ~
 
 echo -e "****************************************\n"
+echo ">>> Grant permissioons"
+echo -e "\n****************************************"
+chmod 755 ./*.sh
+
+echo -e "****************************************\n"
 echo ">>> Install some package"
 echo -e "\n****************************************"
 apt install -y locales openssh-server

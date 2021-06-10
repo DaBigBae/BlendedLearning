@@ -13,3 +13,4 @@ sed -i -e "s/.*PDF_RECEIPT_LOGO_PATH.*/PDF_RECEIPT_LOGO_PATH: ""/" /edx/etc/lms.
 sed -i -e "s/.*PDF_RECEIPT_TAX_ID.*/PDF_RECEIPT_TAX_ID: ""/" /edx/etc/lms.yml
 sed -i -e "s/.*PDF_RECEIPT_TAX_ID_LABEL.*/PDF_RECEIPT_TAX_ID_LABEL: ""/" /edx/etc/lms.yml
 sed -i -e "s/.*PDF_RECEIPT_TERMS_AND_CONDITIONS.*/PDF_RECEIPT_TERMS_AND_CONDITIONS: ""/" /edx/etc/lms.yml
+

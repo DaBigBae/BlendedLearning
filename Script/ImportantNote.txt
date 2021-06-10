@@ -1,7 +1,7 @@
 *** Thông tin về các cổng hệ thống Open edX:
 
-LMS*         80
-CMS*        18010
+LMS(*)      80
+CMS(*)      18010
 Certs       18090
 Discovery   18381
 Ecommerce   18130
@@ -9,13 +9,25 @@ edx-release 8099
 Forum       18080
 Xqueue      18040
 
-*: Các hệ thống chính: LMS - Learning Managerment System, CMS - Course Managerment System.
+(*): Các hệ thống chính: LMS - Learning Managerment System, CMS - Course Managerment System.
 
 Sau khi cài đặt hệ thống, các file chứa password sẽ nằm tại đường dẫn /root
 
-*** IMPPORTANT NOTES
+*** Các thư mục quan trọng của edX platform
+| Thư mục | Mô tả |
+|--|--|
+| /edx/app | Nơi chứa các các file cho tất cả các module |
+| /edx/app/edx_ansible | Nơi chứa tệp server-vars.yml |
+| /edx/app/edx_ansible/edx_ansible/playbooks | Chứa các file Ansible playbook |
+| /edx/app/edxapp/edx-platform/themes | Nơi chứa các theme giao diện cho hệ thống |
+| /edx/bin | Nơi chứa các file pip, ansible và bash admin |
+| /edx/etc | Các file cấu hình cho tất cả module của edX |
+| /edx/var | Chứa dữ liệu của hệ thống (app, logs,...) |
 
+*** Sau khi cài đặt
 #1. Tạo tài khoản superuser/staff (bắt buộc)
+sudo -H -u edxapp bash
+source /edx/app/edxapp/edxapp_env
 # Chuyển vùng làm việc về thư mục edx-platform
 $ cd /edx/app/edxapp/edx-platform
 
@@ -25,6 +37,11 @@ $ python ./manage.py lms --settings production createsuperuser
 
 # Chạy lệnh sau để đổi pass
 $ python ./manage.py lms --settings production changepassword CITDAdmin
+
+Bước này không bắt buộc:
+Có thể add user ubuntu vào 2 group Open edX Linux, nhằm đơn giản hoá trong quá trình làm việc
+$ sudo usermod -a -G www-data ubuntu
+$ sudo usermod -a -G edxapp ubuntu
 
 #2. Đổi ngôn ngữ của hệ thống
 Hiện tại dự án dịch thuật hệ thống Open edX trên transifex đang tạm ngưng
@@ -53,3 +70,9 @@ $ sudo ./SMTP.sh -u EMAILADDRESS -p PASS
 - 
 
 #6. Install Ecommerce
+
+### Troubleshoot
+** Lỗi Uh no server Error:
+Cách 1: Chạy Lệnh
+$ pkill -9 nginx && nginx -c /etc/nginx/nginx.conf && nginx -s reload
+Cách 2: sudo <path>/fixInstallFailed.sh

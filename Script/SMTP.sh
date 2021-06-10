@@ -1,7 +1,7 @@
 #!/bin/bash
 
-MAIL=''
-PASS=''
+MAIL=
+PASS=
 SERVER="smtp.gmail.com"
 PORT=587
 TLS="true"
@@ -23,12 +23,36 @@ For example: ./SMTP.sh test@gmail.com yourpass
 Help option:
     -h  Help
     "
+    exit 0
+}
+
+main(){
+    echo -e ">>> Change value in /edx/etc/lms.yml and /edx/etc/studio.yml\n"
+    sed -i -e "s/.*EMAIL_HOST_PASSWORD.*/EMAIL_HOST_PASSWORD: $PASS/" /edx/etc/lms.yml
+    sed -i -e "s/.*EMAIL_HOST_USER.*/EMAIL_HOST_USER: $MAIL/" /edx/etc/lms.yml
+
+    sed -i -e "s/.*EMAIL_HOST_PASSWORD.*/EMAIL_HOST_PASSWORD: $PASS/" /edx/etc/studio.yml
+    sed -i -e "s/.*EMAIL_HOST_USER.*/EMAIL_HOST_USER: $MAIL/" /edx/etc/studio.yml
+
+    sed -i -e "s/.*EMAIL_BACKEND.*/EMAIL_BACKEND: django.core.mail.backends.smtp.EmailBackend/" /edx/etc/lms.yml
+    sed -i -e "s/.*EMAIL_HOST\W.*/EMAIL_HOST: $SERVER/" /edx/etc/lms.yml
+    sed -i -e "s/.*EMAIL_PORT.*/EMAIL_PORT: $PORT/" /edx/etc/lms.yml
+    sed -i -e "s/.*EMAIL_USE_TLS.*/EMAIL_USE_TLS: $TLS/" /edx/etc/lms.yml
+
+    sed -i -e "s/.*EMAIL_BACKEND.*/EMAIL_BACKEND: django.core.mail.backends.smtp.EmailBackend/" /edx/etc/studio.yml
+    sed -i -e "s/EMAIL_HOST\W.*/EMAIL_HOST: $SERVER/" /edx/etc/studio.yml
+    sed -i -e "s/.*EMAIL_PORT.*/EMAIL_PORT: $PORT/" /edx/etc/studio.yml
+    sed -i -e "s/.*EMAIL_USE_TLS.*/EMAIL_USE_TLS: $TLS/" /edx/etc/studio.yml
+
+    echo -e ">>> Restarting Open edX platform...\n"
+    /edx/bin/supervisorctl restart lms
+    /edx/bin/supervisorctl restart cms
+    /edx/bin/supervisorctl restart edxapp_worker:
 }
 
 if (! getopts :e:p:s:o:th flag);
 then
     show_help
-    exit 1
 fi
 
 while getopts :e:p:s:o:th flag
@@ -51,33 +75,19 @@ do
         ;;
         h) #help
             show_help
-            exit 1
         ;;
         *)
             echo "Invalid option: -$OPTARG. USE -h flag for help."
-            exit 1
+            exit 0
         ;;
     esac
 done
 
-echo -e ">>> Change value in /edx/etc/lms.yml and /edx/etc/studio.yml\n"
-sed -i -e "s/.*EMAIL_HOST_PASSWORD.*/EMAIL_HOST_PASSWORD: $PASS/" /edx/etc/lms.yml
-sed -i -e "s/.*EMAIL_HOST_USER.*/EMAIL_HOST_USER: $MAIL/" /edx/etc/lms.yml
-
-sed -i -e "s/.*EMAIL_HOST_PASSWORD.*/EMAIL_HOST_PASSWORD: $PASS/" /edx/etc/studio.yml
-sed -i -e "s/.*EMAIL_HOST_USER.*/EMAIL_HOST_USER: $MAIL/" /edx/etc/studio.yml
-
-sed -i -e "s/.*EMAIL_BACKEND.*/EMAIL_BACKEND: django.core.mail.backends.smtp.EmailBackend/" /edx/etc/lms.yml
-sed -i -e "s/.*EMAIL_HOST\W.*/EMAIL_HOST: $SERVER/" /edx/etc/lms.yml
-sed -i -e "s/.*EMAIL_PORT.*/EMAIL_PORT: $PORT/" /edx/etc/lms.yml
-sed -i -e "s/.*EMAIL_USE_TLS.*/EMAIL_USE_TLS: $TLS/" /edx/etc/lms.yml
-
-sed -i -e "s/.*EMAIL_BACKEND.*/EMAIL_BACKEND: django.core.mail.backends.smtp.EmailBackend/" /edx/etc/studio.yml
-sed -i -e "s/EMAIL_HOST\W.*/EMAIL_HOST: $SERVER/" /edx/etc/studio.yml
-sed -i -e "s/.*EMAIL_PORT.*/EMAIL_PORT: $PORT/" /edx/etc/studio.yml
-sed -i -e "s/.*EMAIL_USE_TLS.*/EMAIL_USE_TLS: $TLS/" /edx/etc/studio.yml
-
-echo -e ">>> Restarting Open edX platform...\n"
-/edx/bin/supervisorctl restart lms
-/edx/bin/supervisorctl restart cms
-/edx/bin/supervisorctl restart edxapp_worker:
+if [[ -n "$MAIL" && -n "$PASS" ]];
+then
+    main
+else
+    echo "Email and password was not set please read Help!"
+    echo
+    show_helps
+fi
