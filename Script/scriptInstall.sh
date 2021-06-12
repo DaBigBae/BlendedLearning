@@ -17,8 +17,8 @@ cat << EOF > config.yml
 EDXAPP_PLATFORM_NAME: 'CITD EDU Online'
 EDXAPP_PLATFORM_DESCRIPTION: 'Center for Information Technology Development'
 
-EDXAPP_LMS_BASE: "study.citd.vn"
-EDXAPP_CMS_BASE: "studio.study.citd.vn"
+EDXAPP_LMS_BASE: "localhost:80"
+EDXAPP_CMS_BASE: "localhost:18010"
 EOF
 
 

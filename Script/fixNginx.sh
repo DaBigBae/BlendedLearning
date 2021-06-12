@@ -16,10 +16,10 @@ For example: ./fixNginx -s\nHelp option:
 while getopts :s:r:h flag
 do
     case "$flag" in
-        s) #restart lms
+        s) #start nginx service
             service nginx start
         ;;
-        r) #restart cms
+        r) #kill, reconfig and reload nginx service
             pkill -9 nginx && nginx -c /etc/nginx/nginx.conf && nginx -s reload
         ;;
         h) #help

@@ -37,6 +37,6 @@ ufw allow 8000:8999/tcp
 ufw allow 18000:18999/tcp
 ufw enable
 
-echo ">>> All done! You need to reboot your server."
+echo -e "\n>>> All done! You need to reboot your server."
 echo "After reboot, you need to run < scriptInstall.sh > under root privilege."
 echo "Type: < sudo reboot >, to reboot your server."
