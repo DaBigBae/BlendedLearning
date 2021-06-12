@@ -51,8 +51,8 @@ $ python ./manage.py lms --settings production changepassword <username>
 Bước này không bắt buộc:
 Có thể add user ubuntu vào 2 group Open edX Linux, nhằm đơn giản hoá trong quá trình làm việc
 ```
-$ sudo usermod -a -G www-data ubuntu
-$ sudo usermod -a -G edxapp ubuntu
+$ sudo usermod -aG www-data <username>
+$ sudo usermod -aG edxapp <username>
 ```
 
 ## 2. Đổi ngôn ngữ của hệ thống
@@ -66,10 +66,10 @@ $ source /edx/app/edxapp/edxapp_env
 $ cd /edx/app/edxapp/edx-platform
 $ paver i18n_dummy
 ```
-Lệnh paver trên sẽ tải các ngôn ngữ được liệt kê sẵn trong mục 
-của file nằm tại đường dẫn `/edx/app/edxapp/edxplatform/conf/locale/config.yml`. Nếu không muốn cài đặt ngôn ngữ nào thì có thể đặt comment (#) trước ngôn ngữ không muốn cài đặt.
+Lệnh paver trên sẽ cài đặt các ngôn ngữ được liệt kê sẵn trong mục `locales`
+của file `config.yml` nằm tại đường dẫn `/edx/app/edxapp/edxplatform/conf/locale/config.yml`. Nếu không muốn cài đặt ngôn ngữ nào thì có thể đặt comment (#) trước ngôn ngữ không muốn cài đặt.
 
-Truy cập vào \<yourLMS>/update_lang/ -> Chọn ngôn ngữ -> OK
+Truy cập vào \<yourLMS>/update_lang/ -> Nhập code ngôn ngữ (vi cho Tiếng Việt) -> Submit
 
 ## 3. Đổi favicon, logo...
 Thay thế logo mặc định tại `/edx/app/edxapp/edx-platform/lms/static/images`, file logo mới nên được đặt tên là logo.png
@@ -82,12 +82,35 @@ $ sudo ./compileStaticAssets.sh
 - Truy cập https://myaccount.google.com/lesssecureapps (nếu sử dụng gmail) và thay đổi cài đặt cho lựa chọn "Allow less secure apps" về "on".
 - Chạy script sau để cài nhanh (áp dụng với gmail)
 ```
-$ sudo ./SMTP.sh -u EMAILADDRESS -p PASS
+$ sudo ./SMTP.sh -e <EMAILADDRESS> -p <PASSWORD>
 ```
 - Chạy lệnh trên với option -h để biết thêm các lựa chọn khác
 
 ## 5. Install Notes and Annotations
+- Tạo superuser cho edx-notes
+```
+$ sudo -H -u edxapp bash
+$ source /edx/app/edxapp/edxapp_env
+$ cd /edx/app/edxapp/edx-platform
+$ python ./manage.py lms --settings production createsuperuser
+# Nên đặt tên edxnotes_worker
+```
+Truy cập \<yourLMS>/admin -> Django OAuth Toolkit -> Application -> thêm 2 app (edx-notes-backend-service và edx-notes-sso), chọn như sau:
+```
+>>> backend-service:
+client ID và client secret: setup tuỳ ý
+client type: confidential
+authorization: client credentials
 
+>>> sso:
+lient ID và client secret: setup tuỳ ý
+client type: confidential
+authorization: authorization code
+Đánh dấu ô skip authorization
+```
+client_ID và client_secret sẽ dùng cho sau nên lưu lại.
+
+Chạy file `scriptNotesAndAnnotations.sh`
 
 ## 6. Install Ecommerce
 

@@ -3,47 +3,109 @@
 
 #!/bin/bash
 
-MYSQLDBPASS=
-SECRETKEY=
-CLIENTID=
-CLIENTSECRET=
-#HOST=
-#ELASTICSEARCHURL=
-#DATASTORE=
-#ALLOWHOST=
+MYSQLDBPASS="edXNotesAPIdbPass"
+SECRETKEY="edXNotesAPIpass"
+CLIENTID="edx-notes-sso-key"
+CLIENTSECRET="edx-notes-sso-secret"
+DB_MIGRATION_PASS=$(sed -i -e "/COMMON_MYSQL_ADMIN_PASS/ s/[^:]*: *//" /root/my-password.txt)
+#HOST="localhost"
+#ELASTICSEARCHURL="localhost:9200"
+#DATASTORE= (đã có tham chiếu - edx_notes_api)
+#ALLOWHOST= (nếu có địa chỉ web khi triển khai production, nên thêm host vào)
 
-#/https?:\/\/(?:[-\w]+\.)?([-\w]+)\.\w+(?:\.\w+)?\/?.*/g
+show_help(){
+    echo "
+Usage: scriptNotesAndAnnotation.sh [-p MySQLDBPassword] [-k SecretKey]
+             [-i ClientID] [-s ClientSecret] [-h] args
 
-sed -i -e "s/.*EDX_NOTES_API_MYSQL_DB_PASS.*/EDX_NOTES_API_MYSQL_DB_PASS: $MYSQLDBPASS/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-sed -i -e "s/.*EDX_NOTES_API_SECRET_KEY.*/EDX_NOTES_API_SECRET_KEY: $SECRETKEY/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-sed -i -e "s/.*EDX_NOTES_API_CLIENT_ID.*/EDX_NOTES_API_CLIENT_ID: $CLIENTID/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-sed -i -e "s/.*EDX_NOTES_API_CLIENT_SECRET.*/EDX_NOTES_API_CLIENT_SECRET: $CLIENTSECRET/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-#sed -i -e "s/.*EDX_NOTES_API_MYSQL_HOST.*/EDX_NOTES_API_MYSQL_HOST: $HOST/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-#sed -i -e "s/.*EDX_NOTES_API_ELASTICSEARCH_URL.*/EDX_NOTES_API_ELASTICSEARCH_URL: $ELASTICSEARCHURL/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-#sed -i -e "s/.*EDX_NOTES_API_DATASTORE_NAME.*/EDX_NOTES_API_DATASTORE_NAME: $DATASTORE/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-#sed -i -e "s/.*EDX_NOTES_API_ALLOWED_HOST.*/EDX_NOTES_API_ALLOWED_HOST: $ALLOWHOST/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+Main options:
+    -p Set password for Notes DB
+    -k Secret key of Notes API
+    -i Client ID of OAuth
+    -s Client secret of OAuth
 
-sed -i -e "s/.*ENABLE_EDXNOTES.*/ENABLE_EDXNOTES: true/" /edx/etc/lms/yml
-sed -i -e "s/.*EDXNOTES_INTERNAL_API.*/EDXNOTES_INTERNAL_API: "https://127.0.0.1/18120/api/v1"/" /edx/etc/lms.yml
-sed -i -e "s/.*EDXNOTES_PUBLIC_API.*/EDXNOTES_PUBLIC_API: "https://127.0.0.1:18120/api/v1"/" /edx/etc/lms.yml
-sed -i -e "s/.*JWT_ISSUER.*/JWT_ISSUER: "http://localhost/oauth2"/" /edx/etc/lms.yml
+For example: ./scriptNotesAndAnnotation.sh -p paSS -k SecREET -i 'client_id' -s clinetsecrret
 
-# Create user with Ansible
-source /edx/app/edx_ansible/venvs/edx_ansible/bin/activate << EOF
+Help option:
+    -h  Help
+    "
+    exit 0
+}
+
+main(){
+    sed -i -e "s/.*EDX_NOTES_API_MYSQL_DB_PASS.*/EDX_NOTES_API_MYSQL_DB_PASS: $MYSQLDBPASS/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    sed -i -e "s/.*EDX_NOTES_API_SECRET_KEY.*/EDX_NOTES_API_SECRET_KEY: $SECRETKEY/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    sed -i -e "s/.*EDX_NOTES_API_CLIENT_ID.*/EDX_NOTES_API_CLIENT_ID: $CLIENTID/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    sed -i -e "s/.*EDX_NOTES_API_CLIENT_SECRET.*/EDX_NOTES_API_CLIENT_SECRET: $CLIENTSECRET/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    #sed -i -e "s/.*EDX_NOTES_API_MYSQL_HOST.*/EDX_NOTES_API_MYSQL_HOST: $HOST/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    #sed -i -e "s/.*EDX_NOTES_API_ELASTICSEARCH_URL.*/EDX_NOTES_API_ELASTICSEARCH_URL: $ELASTICSEARCHURL/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    #sed -i -e "s/.*EDX_NOTES_API_DATASTORE_NAME.*/EDX_NOTES_API_DATASTORE_NAME: $DATASTORE/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    #sed -i -e "s/EDX_NOTES_API_ALLOWED_HOST/EDX_NOTES_API_ALLOWED_HOST:\n\t$ALLOWHOST/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    sed -i -e "s/.*ENABLE_EDXNOTES.*/ENABLE_EDXNOTES: true/" /edx/etc/lms.yml
+    #sed -i -e "s/.*EDXNOTES_INTERNAL_API.*/EDXNOTES_INTERNAL_API: "https://127.0.0.1:18120/api/v1"/" /edx/etc/lms.yml
+    #sed -i -e "s/.*EDXNOTES_PUBLIC_API.*/EDXNOTES_PUBLIC_API: "https://127.0.0.1:18120/api/v1"/" /edx/etc/lms.yml
+    #sed -i -e "s/.*JWT_ISSUER.*/JWT_ISSUER: "http://localhost/oauth2"/" /edx/etc/lms.yml
+    # Comment role aws
+    sed -i -e "s/- role: aws/# role: aws/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
+    sed -i -e "s/- when: COMMON_ENABLE_AWS_ROLE/# when: COMMON_ENABLE_AWS_ROLE/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
+    
+    # Create user with Ansible
+    source /edx/app/edx_ansible/venvs/edx_ansible/bin/activate << EOF
 cd /edx/app/edx_ansible/edx_ansible/playbooks
-echo 1 | sudo -S ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=edxlocal' -e@roles/edx_notes_api/defaults/main.yml
-exit
+sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=edxlocal' -e@roles/edx_notes_api/defaults/main.yml
+sudo ansible-playbook -i ‘localhost,’ -c local ./run_role.yml -e ‘role=nginx’ -e ‘nginx_sites=edx_notes_api’ -e@roles/edx_notes_api/defaults/main.yml
+sudo ansible-playbook -i ‘localhost,’ -c local ./run_role.yml -e ‘role=edx_notes_api’ -e@roles/edx_notes_api/defaults/main.yml
 EOF
 
-# Install Notes software with Ansible
-source /edx/app/edx_ansible/venvs/edx_ansible/bin/activate << EOF
+    # Install Notes software with Ansible
+    source /edx/app/edx_ansible/venvs/edx_ansible/bin/activate << EOF
 cd /edx/app/edx_ansible/edx_ansible/playbooks/edx-east
-echo 1 | sudo -S ansible-playbook -i 'localhost,' -c local ./notes.yml -e@/edx/app/edx_ansible/server-vars.yml
-exit
+sudo ansible-playbook -i 'localhost,' -c local ./notes.yml
 EOF
 
-# Run Database Migrations
-export EDXNOTES_CONFIG_ROOT=/edx/etc/
-export DB_MIGRATION_USER=root
-export DB_MIGRATION_PASS="QQQwerty!@#123"
-/edx/bin/python.edx_notes_api/edx/bin/manage.edx_notes_api migrate --settings="notesserver.settings.yaml_config"
+    # Run Database Migrations
+    export EDXNOTES_CONFIG_ROOT=/edx/etc/
+    export DB_MIGRATION_USER=root
+    export DB_MIGRATION_PASS=${DB_MIGRATION_PASS}
+    /edx/bin/python.edx_notes_api/edx/bin/manage.edx_notes_api migrate --settings="notesserver.settings.yaml_config"
+}
+
+if (! getopts :p:k:d:s:h flag);
+then
+    show_help
+fi
+
+while getopts :p:k:d:s:h flag
+do
+    case "$flag" in
+        p) #MySQLDBPassword
+            MYSQLDBPASS=$OPTARG
+        ;;
+        k) #SecretKey
+            SECRETKEY=$OPTARG
+        ;;
+        i) #OAuth ClientID
+            CLIENTID=$OPTARG
+        ;;
+        s) #OAuth ClientSecret
+            CLIENTSECRET=$OPTARG
+        ;;
+        h) #help
+            show_help
+        ;;
+        *)
+            echo "Invalid option: -$OPTARG. USE -h flag for help."
+            exit 0
+        ;;
+    esac
+done
+
+if [[ -n "$MYSQLDBPASS" && -n "$SECRETKEY" && -n "$CLIENTID" && -n "$CLIENTSECRET" ]];
+then
+    main
+else
+    echo "Email and password was not set!"
+    echo "Please use -h flag for help!"
+    echo
+    show_helps
+fi

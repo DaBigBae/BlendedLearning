@@ -18,7 +18,7 @@ Main options:
     -o Port email host service (Default is 587)
     -t Don't use TLS when transmit email
 
-For example: ./SMTP.sh test@gmail.com yourpass
+For example: ./SMTP.sh -e test@gmail.com -p yourpass
 
 Help option:
     -h  Help
@@ -87,7 +87,8 @@ if [[ -n "$MAIL" && -n "$PASS" ]];
 then
     main
 else
-    echo "Email and password was not set please read Help!"
+    echo "Email and password was not set!"
+    echo "Please use -h flag for help!"
     echo
     show_helps
 fi

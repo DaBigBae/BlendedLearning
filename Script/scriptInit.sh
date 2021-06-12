@@ -2,7 +2,6 @@
 # Tong hop khi tim hieu OpenedX
 
 #!/bin/bash
-cd ~
 
 echo -e "****************************************\n"
 echo ">>> Grant permissioons"
