@@ -8,7 +8,7 @@ SECRETKEY="edXNotesAPISeccret"
 CLIENTID="edxnotes-sso-key"
 CLIENTSECRET="edxnotes-sso-secret"
 #COMMON_MYSQL_ADMIN_PASS in /root/my-password.yml
-DB_MIGRATION_PASS=
+DBMIGRATIONPASS=
 #HOST="localhost"
 #ELASTICSEARCHURL="localhost:9200"
 #DATASTORE= (đã có tham chiếu - edx_notes_api)
@@ -64,7 +64,7 @@ main(){
 #   # Run Database Migrations
 #    export EDXNOTES_CONFIG_ROOT=/edx/etc/
 #    export DB_MIGRATION_USER=root
-#    export DB_MIGRATION_PASS=${DB_MIGRATION_PASS}
+#    export DB_MIGRATION_PASS=${DBMIGRATIONPASS}
 #    ln -s /edx/app/edx_notes_api/venvs/edx_notes_api/bin/python3.8 /edx/bin/python.edx_notes_api
 #    /edx/bin/python.edx_notes_api /edx/bin/manage.edx_notes_api migrate --settings="notesserver.settings.yaml_config"
 #
@@ -111,11 +111,11 @@ do
     esac
 done
 
-if [[ -n "$MYSQLDBPASS" && -n "$SECRETKEY" && -n "$CLIENTID" && -n "$CLIENTSECRET" && -n "$DB_MIGRATION_PASS" ]];
+if [[ -n "$MYSQLDBPASS" && -n "$SECRETKEY" && -n "$CLIENTID" && -n "$CLIENTSECRET" && -n "$DBMIGRATIONPASS" ]];
 then
     main
 else
     echo "Please use -h flag for help!"
     echo
-    show_helps
+    show_help
 fi
