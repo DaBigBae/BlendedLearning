@@ -7,7 +7,7 @@ MYSQLDBPASS="edXNotesAPIdbPass"
 SECRETKEY="edXNotesAPIpass"
 CLIENTID="edx-notes-sso-key"
 CLIENTSECRET="edx-notes-sso-secret"
-DB_MIGRATION_PASS=$(sed -i -e "/COMMON_MYSQL_ADMIN_PASS/ s/[^:]*: *// s/'//" /root/my-password.txt)
+DB_MIGRATION_PASS=$(sed -i -e "/COMMON\_MYSQL\_ADMIN\_PASS/ s/[^:]*: *// s/'//" /root/my-password.txt)
 #HOST="localhost"
 #ELASTICSEARCHURL="localhost:9200"
 #DATASTORE= (đã có tham chiếu - edx_notes_api)
@@ -77,12 +77,12 @@ exit
 EOF
 }
 
-if (! getopts :p:k:d:s:h flag);
+if (! getopts :p:k:i:s:h flag);
 then
     show_help
 fi
 
-while getopts :p:k:d:s:h flag
+while getopts :p:k:i:s:h flag
 do
     case "$flag" in
         p) #MySQLDBPassword
