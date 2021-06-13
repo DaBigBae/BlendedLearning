@@ -95,22 +95,31 @@ $ cd /edx/app/edxapp/edx-platform
 $ python ./manage.py lms --settings production createsuperuser
 # Nên đặt tên edxnotes_worker
 ```
-Truy cập \<yourLMS>/admin -> Django OAuth Toolkit -> Application -> thêm 2 app (edx-notes-backend-service và edx-notes-sso), chọn như sau:
+Truy cập \<yourLMS>/admin/oauth2_provider/application/ -> thêm 2 application (edxnotes-backend-service và edxnotes-sso), như sau:
 ```
 >>> backend-service:
-client ID và client secret: setup tuỳ ý
-client type: confidential
-authorization: client credentials
+Client ID, Client secret và Name: setup tuỳ ý
+User: chọn service worker
+Client type: Confidential
+Authorization: client credentials
 
 >>> sso:
-lient ID và client secret: setup tuỳ ý
-client type: confidential
-authorization: authorization code
-Đánh dấu ô skip authorization
+Client ID, Client secret và Name: setup tuỳ ý
+User: chọn service worker
+Redirect Uris: https://<service_url>/complete/edx-oauth2/
+Client type: confidential
+Authorization: Authorization code
+Đánh dấu tick ô Skip authorization
 ```
-client_ID và client_secret sẽ dùng cho sau nên lưu lại.
+Client ID và Client secret sso sẽ dùng cho sau, nên lưu lại.
 
-Chạy file `scriptNotesAndAnnotations.sh -p MYSQLPASS -k SECRETKEY -i CLIENTID -s CLIENTSECRET`
+Truy cập \<yourLMS>/admin/oauth_dispatch/applicationaccess/ -> thêm 2 application vừa tạo vào danh sách:
+```
+Application: service-backend/sso
+Scopes: user_id
+```
+
+Chạy script sau để cấu hình và cài đặt Notes: `scriptNotesAndAnnotations.sh -p MYSQLPASS -k SECRETKEY -i CLIENTID -s CLIENTSECRET`
 
 ## 6. Install Ecommerce
 
