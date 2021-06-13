@@ -113,11 +113,11 @@ do
 done
 
 #if [[ -n "$MYSQLDBPASS" && -n "$SECRETKEY" && -n "$CLIENTID" && -n "$CLIENTSECRET" && -n "$DBMIGRATIONPASS" ]];
-if [[ true ]]
-then
-    main
-else
-    echo "Please use -h flag for help!"
-    echo
-    show_help
-fi
+#if [[ true ]];
+#then
+#    main
+#else
+#    echo "Please use -h flag for help!"
+#    echo
+#    show_help
+#fi
