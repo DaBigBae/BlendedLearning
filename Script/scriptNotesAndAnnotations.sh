@@ -4,10 +4,10 @@
 #!/bin/bash
 
 MYSQLDBPASS="edXNotesAPIdbPass"
-SECRETKEY="edXNotesAPIpass"
-CLIENTID="edx-notes-sso-key"
-CLIENTSECRET="edx-notes-sso-secret"
-DB_MIGRATION_PASS=$(sed "s/COMMON_MYSQL_ADMIN_PASS: // s/\'//" /root/my-password.txt)
+SECRETKEY="edXNotesAPISeccret"
+CLIENTID="edxnotes-sso-key"
+CLIENTSECRET="edxnotes-sso-secret"
+DB_MIGRATION_PASS=
 #HOST="localhost"
 #ELASTICSEARCHURL="localhost:9200"
 #DATASTORE= (đã có tham chiếu - edx_notes_api)
@@ -16,15 +16,16 @@ DB_MIGRATION_PASS=$(sed "s/COMMON_MYSQL_ADMIN_PASS: // s/\'//" /root/my-password
 show_help(){
     echo "
 Usage: scriptNotesAndAnnotation.sh [-p MySQLDBPassword] [-k SecretKey]
-             [-i ClientID] [-s ClientSecret] [-h] args
+             [-i ClientID] [-s ClientSecret] [-d DBAdminPassword] [-h] args
 
 Main options:
     -p Set password for Notes DB
     -k Secret key of Notes API
     -i Client ID of OAuth
     -s Client secret of OAuth
+    -d DB Admin password
 
-For example: ./scriptNotesAndAnnotation.sh -p paSS -k SecREET -i 'client_id' -s clinetsecrret
+For example: ./scriptNotesAndAnnotation.sh -p MySQLDBPassword -k SecretKey -i 'client_id' -s clinetsecrret -d DBpassword
 
 Help option:
     -h  Help
@@ -33,35 +34,33 @@ Help option:
 }
 
 main(){
-    sed -i -e "s/.*EDX_NOTES_API_MYSQL_DB_PASS.*/EDX_NOTES_API_MYSQL_DB_PASS: $MYSQLDBPASS/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-    sed -i -e "s/.*EDX_NOTES_API_SECRET_KEY.*/EDX_NOTES_API_SECRET_KEY: $SECRETKEY/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-    sed -i -e "s/.*EDX_NOTES_API_CLIENT_ID.*/EDX_NOTES_API_CLIENT_ID: $CLIENTID/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-    sed -i -e "s/.*EDX_NOTES_API_CLIENT_SECRET.*/EDX_NOTES_API_CLIENT_SECRET: $CLIENTSECRET/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    sed -i -e "s/.*EDX_NOTES_API_MYSQL_DB_PASS:.*/EDX_NOTES_API_MYSQL_DB_PASS: \"$MYSQLDBPASS\"/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    sed -i -e "s/.*EDX_NOTES_API_SECRET_KEY:.*/EDX_NOTES_API_SECRET_KEY: \"$SECRETKEY\"/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    sed -i -e "s/.*EDX_NOTES_API_CLIENT_ID:.*/EDX_NOTES_API_CLIENT_ID: \"$CLIENTID\"/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    sed -i -e "s/.*EDX_NOTES_API_CLIENT_SECRET:.*/EDX_NOTES_API_CLIENT_SECRET: \"$CLIENTSECRET\"/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
     #sed -i -e "s/.*EDX_NOTES_API_MYSQL_HOST.*/EDX_NOTES_API_MYSQL_HOST: $HOST/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
     #sed -i -e "s/.*EDX_NOTES_API_ELASTICSEARCH_URL.*/EDX_NOTES_API_ELASTICSEARCH_URL: $ELASTICSEARCHURL/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
     #sed -i -e "s/.*EDX_NOTES_API_DATASTORE_NAME.*/EDX_NOTES_API_DATASTORE_NAME: $DATASTORE/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
     #sed -i -e "s/EDX_NOTES_API_ALLOWED_HOST/EDX_NOTES_API_ALLOWED_HOST:\n\t$ALLOWHOST/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-    sed -i -e "s/.*ENABLE_EDXNOTES.*/ENABLE_EDXNOTES: true/" /edx/etc/lms.yml
+    sed -i -e "s/.*ENABLE_EDXNOTES:.*/ENABLE_EDXNOTES: true/" /edx/etc/lms.yml
     #sed -i -e "s/.*EDXNOTES_INTERNAL_API.*/EDXNOTES_INTERNAL_API: "https://127.0.0.1:18120/api/v1"/" /edx/etc/lms.yml
     #sed -i -e "s/.*EDXNOTES_PUBLIC_API.*/EDXNOTES_PUBLIC_API: "https://127.0.0.1:18120/api/v1"/" /edx/etc/lms.yml
     #sed -i -e "s/.*JWT_ISSUER.*/JWT_ISSUER: "http://localhost/oauth2"/" /edx/etc/lms.yml
     # Comment role aws in roles
     sed -i -e "s/- role: aws/# role: aws/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
-    sed -i -e "s/.*when: COMMON_ENABLE_AWS_ROLE/# when: COMMON_ENABLE_AWS_ROLE/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
+    sed -i -e "s/when: COMMON_ENABLE_AWS_ROLE/# when: COMMON_ENABLE_AWS_ROLE/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
     
     # Create user and install Notes software with Ansible
     source /edx/app/edx_ansible/venvs/edx_ansible/bin/activate << EOF
 cd /edx/app/edx_ansible/edx_ansible/playbooks
-sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=edxlocal' -e@roles/edx_notes_api/defaults/main.yml
-sudo ansible-playbook -i ‘localhost,’ -c local ./run_role.yml -e ‘role=nginx’ -e ‘nginx_sites=edx_notes_api’ -e@roles/edx_notes_api/defaults/main.yml
-sudo ansible-playbook -i ‘localhost,’ -c local ./run_role.yml -e ‘role=edx_notes_api’ -e@roles/edx_notes_api/defaults/main.yml
-
+sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=edxlocal' -e@roles/edx_notes_api/defaults/main.yml &&\
+sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=nginx' -e 'nginx_sites=edx_notes_api' -e@roles/edx_notes_api/defaults/main.yml &&\
+sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=edx_notes_api' -e@roles/edx_notes_api/defaults/main.yml &&\
 cd /edx/app/edx_ansible/edx_ansible/playbooks/edx-east
 sudo ansible-playbook -i 'localhost,' -c local ./notes.yml
 exit
 EOF
-
-    # Run Database Migrations
+   # Run Database Migrations
     export EDXNOTES_CONFIG_ROOT=/edx/etc/
     export DB_MIGRATION_USER=root
     export DB_MIGRATION_PASS=${DB_MIGRATION_PASS}
@@ -77,12 +76,13 @@ exit
 EOF
 }
 
-if (! getopts :p:k:i:s:h flag);
+if (! getopts :p:k:i:s:d:h flag);
 then
+#dat cau hoi neu nhap y thi thuc hien cai dat mac dinh, neu khong show help
     show_help
 fi
 
-while getopts :p:k:i:s:h flag
+while getopts :p:k:i:s:d:h flag
 do
     case "$flag" in
         p) #MySQLDBPassword
@@ -97,6 +97,9 @@ do
         s) #OAuth ClientSecret
             CLIENTSECRET=$OPTARG
         ;;
+        d) #DB admin pass
+            DB_MIGRATION_PASS=$OPTARG
+        ;;
         h) #help
             show_help
         ;;
@@ -107,7 +110,7 @@ do
     esac
 done
 
-if [[ -n "$MYSQLDBPASS" && -n "$SECRETKEY" && -n "$CLIENTID" && -n "$CLIENTSECRET" ]];
+if [[ -n "$MYSQLDBPASS" && -n "$SECRETKEY" && -n "$CLIENTID" && -n "$CLIENTSECRET" && -n "$DB_MIGRATION_PASS" ]];
 then
     main
 else
