@@ -7,7 +7,7 @@ MYSQLDBPASS="edXNotesAPIdbPass"
 SECRETKEY="edXNotesAPIpass"
 CLIENTID="edx-notes-sso-key"
 CLIENTSECRET="edx-notes-sso-secret"
-DB_MIGRATION_PASS=$(sed "/COMMON\_MYSQL\_ADMIN\_PASS/ s/[^:]*: *// s/\'//" /root/my-password.txt)
+DB_MIGRATION_PASS=$(sed "s/COMMON_MYSQL_ADMIN_PASS: // s/\'//" /root/my-password.txt)
 #HOST="localhost"
 #ELASTICSEARCHURL="localhost:9200"
 #DATASTORE= (đã có tham chiếu - edx_notes_api)
@@ -111,7 +111,6 @@ if [[ -n "$MYSQLDBPASS" && -n "$SECRETKEY" && -n "$CLIENTID" && -n "$CLIENTSECRE
 then
     main
 else
-    echo "Email and password was not set!"
     echo "Please use -h flag for help!"
     echo
     show_helps
