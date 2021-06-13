@@ -54,14 +54,14 @@ main(){
     # Create user and install Notes software with Ansible
 #    source /edx/app/edx_ansible/venvs/edx_ansible/bin/activate << EOF
 #cd /edx/app/edx_ansible/edx_ansible/playbooks
-#sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=edxlocal' -e@roles/edx_notes_api/defaults/main.yml &&\
-#sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=nginx' -e 'nginx_sites=edx_notes_api' -e@roles/edx_notes_api/defaults/main.yml &&\
-#sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=edx_notes_api' -e@roles/edx_notes_api/defaults/main.yml &&\
+#sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=edxlocal' -e@roles/edx_notes_api/defaults/main.yml
+#sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=nginx' -e 'nginx_sites=edx_notes_api' -e@roles/edx_notes_api/defaults/main.yml
+#sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=edx_notes_api' -e@roles/edx_notes_api/defaults/main.yml
 #cd /edx/app/edx_ansible/edx_ansible/playbooks/edx-east
 #sudo ansible-playbook -i 'localhost,' -c local ./notes.yml
 #exit
 #EOF
-#   # Run Database Migrations
+#   # Run Database Migrations in root
 #    export EDXNOTES_CONFIG_ROOT=/edx/etc/
 #    export DB_MIGRATION_USER=root
 #    export DB_MIGRATION_PASS=${DBMIGRATIONPASS}
@@ -111,7 +111,8 @@ do
     esac
 done
 
-if [[ -n "$MYSQLDBPASS" && -n "$SECRETKEY" && -n "$CLIENTID" && -n "$CLIENTSECRET" && -n "$DBMIGRATIONPASS" ]];
+#if [[ -n "$MYSQLDBPASS" && -n "$SECRETKEY" && -n "$CLIENTID" && -n "$CLIENTSECRET" && -n "$DBMIGRATIONPASS" ]];
+if [[ true ]]
 then
     main
 else
