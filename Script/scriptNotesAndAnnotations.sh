@@ -47,7 +47,7 @@ main(){
     #sed -i -e "s/.*JWT_ISSUER.*/JWT_ISSUER: "http://localhost/oauth2"/" /edx/etc/lms.yml
     # Comment role aws in roles
     sed -i -e "s/- role: aws/# role: aws/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
-    sed -i -e "s/when: COMMON_ENABLE_AWS_ROLE/# when: COMMON_ENABLE_AWS_ROLE/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
+    sed -i -e "s/.*when: COMMON_ENABLE_AWS_ROLE/# when: COMMON_ENABLE_AWS_ROLE/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
     
     # Create user and install Notes software with Ansible
     source /edx/app/edx_ansible/venvs/edx_ansible/bin/activate << EOF
