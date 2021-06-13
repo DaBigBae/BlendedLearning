@@ -110,9 +110,10 @@ authorization: authorization code
 ```
 client_ID và client_secret sẽ dùng cho sau nên lưu lại.
 
-Chạy file `scriptNotesAndAnnotations.sh`
+Chạy file `scriptNotesAndAnnotations.sh -p MYSQLPASS -k SECRETKEY -i CLIENTID -s CLIENTSECRET`
 
 ## 6. Install Ecommerce
+
 
 # Troubleshoot
 > Lỗi Uh oh, we are having some server issues:

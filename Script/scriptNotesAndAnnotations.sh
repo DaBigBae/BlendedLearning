@@ -49,25 +49,31 @@ main(){
     sed -i -e "s/- role: aws/# role: aws/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
     sed -i -e "s/- when: COMMON_ENABLE_AWS_ROLE/# when: COMMON_ENABLE_AWS_ROLE/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
     
-    # Create user with Ansible
+    # Create user and install Notes software with Ansible
     source /edx/app/edx_ansible/venvs/edx_ansible/bin/activate << EOF
 cd /edx/app/edx_ansible/edx_ansible/playbooks
 sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=edxlocal' -e@roles/edx_notes_api/defaults/main.yml
 sudo ansible-playbook -i ‘localhost,’ -c local ./run_role.yml -e ‘role=nginx’ -e ‘nginx_sites=edx_notes_api’ -e@roles/edx_notes_api/defaults/main.yml
 sudo ansible-playbook -i ‘localhost,’ -c local ./run_role.yml -e ‘role=edx_notes_api’ -e@roles/edx_notes_api/defaults/main.yml
-EOF
 
-    # Install Notes software with Ansible
-    source /edx/app/edx_ansible/venvs/edx_ansible/bin/activate << EOF
 cd /edx/app/edx_ansible/edx_ansible/playbooks/edx-east
 sudo ansible-playbook -i 'localhost,' -c local ./notes.yml
+exit
 EOF
 
     # Run Database Migrations
     export EDXNOTES_CONFIG_ROOT=/edx/etc/
     export DB_MIGRATION_USER=root
     export DB_MIGRATION_PASS=${DB_MIGRATION_PASS}
-    /edx/bin/python.edx_notes_api/edx/bin/manage.edx_notes_api migrate --settings="notesserver.settings.yaml_config"
+    ln -s /edx/app/edx_notes_api/venvs/edx_notes_api/bin/python3.8 /edx/bin/python.edx_notes_api
+    /edx/bin/python.edx_notes_api /edx/bin/manage.edx_notes_api migrate --settings="notesserver.settings.yaml_config"
+
+    sudo -H -u edxapp bash << EOF
+source /edx/app/edxapp/edxapp_env
+cd /edx/app/edxapp/edx-platform
+paver update_assets cms --settings=production
+paver update_assets lms --settings=production
+EOF
 }
 
 if (! getopts :p:k:d:s:h flag);

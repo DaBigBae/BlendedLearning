@@ -6,7 +6,8 @@ source /edx/app/edxapp/edxapp_env
 cd /edx/app/edxapp/edx-platform
 
 # Chạy 1 trong hai lệnh sau để tạo tài khoản
-#python ./manage.py lms manage_user CITDAdmin admin@citd.vn --staff --superuser --settings=production
+# python ./manage.py lms manage_user CITDAdmin admin@citd.vn --staff --superuser --settings=production
+# Command trên cho phép tạo tài khoản dạng staff
 python ./manage.py lms --settings production createsuperuser
 echo username
 echo email
