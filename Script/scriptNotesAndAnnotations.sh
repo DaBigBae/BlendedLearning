@@ -80,7 +80,8 @@ main(){
 if (! getopts :p:k:i:s:d:h flag);
 then
 #dat cau hoi neu nhap y thi thuc hien cai dat mac dinh, neu khong show help
-    show_help
+    main
+    #show_help
 fi
 
 while getopts :p:k:i:s:d:h flag
