@@ -7,7 +7,7 @@ MYSQLDBPASS="edXNotesAPIdbPass"
 SECRETKEY="edXNotesAPIpass"
 CLIENTID="edx-notes-sso-key"
 CLIENTSECRET="edx-notes-sso-secret"
-DB_MIGRATION_PASS=$(sed -i -e "/COMMON_MYSQL_ADMIN_PASS/ s/[^:]*: *//" /root/my-password.txt)
+DB_MIGRATION_PASS=$(sed -i -e "/COMMON_MYSQL_ADMIN_PASS/ s/[^:]*: *// s/'//" /root/my-password.txt)
 #HOST="localhost"
 #ELASTICSEARCHURL="localhost:9200"
 #DATASTORE= (đã có tham chiếu - edx_notes_api)
@@ -45,9 +45,9 @@ main(){
     #sed -i -e "s/.*EDXNOTES_INTERNAL_API.*/EDXNOTES_INTERNAL_API: "https://127.0.0.1:18120/api/v1"/" /edx/etc/lms.yml
     #sed -i -e "s/.*EDXNOTES_PUBLIC_API.*/EDXNOTES_PUBLIC_API: "https://127.0.0.1:18120/api/v1"/" /edx/etc/lms.yml
     #sed -i -e "s/.*JWT_ISSUER.*/JWT_ISSUER: "http://localhost/oauth2"/" /edx/etc/lms.yml
-    # Comment role aws
+    # Comment role aws in roles
     sed -i -e "s/- role: aws/# role: aws/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
-    sed -i -e "s/- when: COMMON_ENABLE_AWS_ROLE/# when: COMMON_ENABLE_AWS_ROLE/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
+    sed -i -e "s/when: COMMON_ENABLE_AWS_ROLE/# when: COMMON_ENABLE_AWS_ROLE/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
     
     # Create user and install Notes software with Ansible
     source /edx/app/edx_ansible/venvs/edx_ansible/bin/activate << EOF
@@ -73,6 +73,7 @@ source /edx/app/edxapp/edxapp_env
 cd /edx/app/edxapp/edx-platform
 paver update_assets cms --settings=production
 paver update_assets lms --settings=production
+exit
 EOF
 }
 
