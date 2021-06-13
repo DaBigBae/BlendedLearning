@@ -43,7 +43,7 @@ main(){
     #sed -i -e "s/.*EDX_NOTES_API_ELASTICSEARCH_URL.*/EDX_NOTES_API_ELASTICSEARCH_URL: $ELASTICSEARCHURL/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
     #sed -i -e "s/.*EDX_NOTES_API_DATASTORE_NAME.*/EDX_NOTES_API_DATASTORE_NAME: $DATASTORE/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
     #sed -i -e "s/EDX_NOTES_API_ALLOWED_HOST/EDX_NOTES_API_ALLOWED_HOST:\n\t$ALLOWHOST/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-    sed -i -e "s/.*ENABLE_EDXNOTES:.*/ENABLE_EDXNOTES: true/" /edx/etc/lms.yml
+    sed -i -e "s/ENABLE_EDXNOTES:.*/ENABLE_EDXNOTES: true/" /edx/etc/lms.yml
     #sed -i -e "s/.*EDXNOTES_INTERNAL_API.*/EDXNOTES_INTERNAL_API: "https://127.0.0.1:18120/api/v1"/" /edx/etc/lms.yml
     #sed -i -e "s/.*EDXNOTES_PUBLIC_API.*/EDXNOTES_PUBLIC_API: "https://127.0.0.1:18120/api/v1"/" /edx/etc/lms.yml
     #sed -i -e "s/.*JWT_ISSUER.*/JWT_ISSUER: "http://localhost/oauth2"/" /edx/etc/lms.yml
