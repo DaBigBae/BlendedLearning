@@ -1,0 +1,67 @@
+Jun 18 13:07:57 bebu-vm [service_variant=lms][openedx.core.djangoapps.content.block_structure.store][env:sandbox] INFO [bebu-vm  3239] [user 14] [ip 127.0.0.1] [store.py:179] - BlockStructure: Not found in cache; block-v1:HowKTeam+PT004+2021_T06+type@course+block@course.
+Jun 18 13:07:58 bebu-vm [service_variant=lms][openedx.core.djangoapps.content.block_structure.store][env:sandbox] INFO [bebu-vm  3239] [user 14] [ip 127.0.0.1] [store.py:166] - BlockStructure: Added to cache; block-v1:HowKTeam+PT004+2021_T06+type@course+block@course, size: 5050
+Jun 18 13:08:00 bebu-vm [service_variant=lms][edx_rest_framework_extensions.auth.jwt.middleware][env:sandbox] INFO [bebu-vm  3241] [user 14] [ip 127.0.0.1] [middleware.py:70] - ('The view StudentProctoredExamAttemptCollection allows Jwt Authentication. The required permission class, NotJwtRestrictedApplication,', ' was automatically added.')
+Jun 18 13:08:03 bebu-vm [service_variant=lms][root][env:sandbox] ERROR [bebu-vm  3241] [user None] [ip None] [signals.py:22] - Uncaught exception from None
+Traceback (most recent call last):
+  File "/edx/app/edxapp/edx-platform/lms/djangoapps/edxnotes/helpers.py", line 58, in get_edxnotes_id_token
+    notes_application = Application.objects.get(name=settings.EDXNOTES_CLIENT_NAME)
+  File "/edx/app/edxapp/venvs/edxapp/lib/python3.8/site-packages/django/db/models/manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/edx/app/edxapp/venvs/edxapp/lib/python3.8/site-packages/django/db/models/query.py", line 406, in get
+    raise self.model.DoesNotExist(
+oauth2_provider.models.Application.DoesNotExist: Application matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/edx/app/edxapp/venvs/edxapp/lib/python3.8/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/edx/app/edxapp/venvs/edxapp/lib/python3.8/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/edx/app/edxapp/venvs/edxapp/lib/python3.8/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/lib/python3.8/contextlib.py", line 75, in inner
+    return func(*args, **kwds)
+  File "/edx/app/edxapp/venvs/edxapp/lib/python3.8/site-packages/django/contrib/auth/decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/edx/app/edxapp/edx-platform/lms/djangoapps/edxnotes/views.py", line 61, in edxnotes
+    notes_info = get_notes(request, course)
+  File "/edx/app/edxapp/edx-platform/lms/djangoapps/edxnotes/helpers.py", line 343, in get_notes
+    response = send_request(request.user, course.id, page, page_size, path, text)
+  File "/edx/app/edxapp/edx-platform/lms/djangoapps/edxnotes/helpers.py", line 110, in send_request
+    "x-annotator-auth-token": get_edxnotes_id_token(user)
+  File "/edx/app/edxapp/edx-platform/lms/djangoapps/edxnotes/helpers.py", line 60, in get_edxnotes_id_token
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: OAuth2 Client with name [edx-notes] does not exist.
+Jun 18 13:08:03 bebu-vm [service_variant=lms][django.request][env:sandbox] ERROR [bebu-vm  3241] [user 14] [ip 127.0.0.1] [log.py:222] - Internal Server Error: /courses/course-v1:HowKTeam+PT004+2021_T06/edxnotes/
+Traceback (most recent call last):
+  File "/edx/app/edxapp/edx-platform/lms/djangoapps/edxnotes/helpers.py", line 58, in get_edxnotes_id_token
+    notes_application = Application.objects.get(name=settings.EDXNOTES_CLIENT_NAME)
+  File "/edx/app/edxapp/venvs/edxapp/lib/python3.8/site-packages/django/db/models/manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/edx/app/edxapp/venvs/edxapp/lib/python3.8/site-packages/django/db/models/query.py", line 406, in get
+    raise self.model.DoesNotExist(
+oauth2_provider.models.Application.DoesNotExist: Application matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/edx/app/edxapp/venvs/edxapp/lib/python3.8/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/edx/app/edxapp/venvs/edxapp/lib/python3.8/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/edx/app/edxapp/venvs/edxapp/lib/python3.8/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/lib/python3.8/contextlib.py", line 75, in inner
+    return func(*args, **kwds)
+  File "/edx/app/edxapp/venvs/edxapp/lib/python3.8/site-packages/django/contrib/auth/decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/edx/app/edxapp/edx-platform/lms/djangoapps/edxnotes/views.py", line 61, in edxnotes
+    notes_info = get_notes(request, course)
+  File "/edx/app/edxapp/edx-platform/lms/djangoapps/edxnotes/helpers.py", line 343, in get_notes
+    response = send_request(request.user, course.id, page, page_size, path, text)
+  File "/edx/app/edxapp/edx-platform/lms/djangoapps/edxnotes/helpers.py", line 110, in send_request
+    "x-annotator-auth-token": get_edxnotes_id_token(user)
+  File "/edx/app/edxapp/edx-platform/lms/djangoapps/edxnotes/helpers.py", line 60, in get_edxnotes_id_token
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: OAuth2 Client with name [edx-notes] does not exist.
