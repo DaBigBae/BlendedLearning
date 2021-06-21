@@ -5,8 +5,8 @@
 
 MYSQLDBPASS="edXNotesAPIdbPass"
 SECRETKEY="edXNotesAPISeccret"
-CLIENTID="edxnotes-sso-key"
-CLIENTSECRET="edxnotes-sso-secret"
+CLIENTID="j1SYlYc2nQUyKM9jR1AIuSxpIbbSYmEH7S0nGOmJ"
+CLIENTSECRET="MDYAvVxbuUarXQwZ02smDXIFFCIv6UMb3y3dd05PkKZZJLdUHekd4rWqAauGe4hRXgbKddZFp3jk1CfJd8XOVPeq67IkFo9BUD5cWrctG6BIP7PVozS6ydLfRIRMchZn"
 #COMMON_MYSQL_ADMIN_PASS in /root/my-password.yml
 DBMIGRATIONPASS=
 #HOST="localhost"
@@ -44,8 +44,11 @@ main(){
     #sed -i -e "s/EDX_NOTES_API_DATASTORE_NAME.*/EDX_NOTES_API_DATASTORE_NAME: $DATASTORE/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
     #sed -i -e "s/EDX_NOTES_API_ALLOWED_HOST/EDX_NOTES_API_ALLOWED_HOST:\n\t$ALLOWHOST/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
     sed -i -e "s/ENABLE_EDXNOTES:.*/ENABLE_EDXNOTES: true/" /edx/etc/lms.yml
+    sed -i -e "s/ENABLE_EDXNOTES:.*/ENABLE_EDXNOTES: true/" /edx/etc/studio.yml
     #sed -i -e "s/EDXNOTES_INTERNAL_API.*/EDXNOTES_INTERNAL_API: "https://127.0.0.1:18120/api/v1"/" /edx/etc/lms.yml
     #sed -i -e "s/EDXNOTES_PUBLIC_API.*/EDXNOTES_PUBLIC_API: "https://127.0.0.1:18120/api/v1"/" /edx/etc/lms.yml
+    #sed -i -e "s/JWT_ISSUER.*/JWT_ISSUER: "http://localhost/oauth2"/" /edx/etc/lms.yml
+    #sed -i -e "s/JWT_ISSUER.*/JWT_ISSUER: "http://localhost/oauth2"/" /edx/etc/lms.yml
     #sed -i -e "s/JWT_ISSUER.*/JWT_ISSUER: "http://localhost/oauth2"/" /edx/etc/lms.yml
     # Comment role aws in roles
     sed -i -e "s/- role: aws/#- role: aws/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml

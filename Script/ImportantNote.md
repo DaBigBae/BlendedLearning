@@ -123,6 +123,13 @@ Chạy script sau để cấu hình và cài đặt Notes: `scriptNotesAndAnnota
 
 ## 6. Install Ecommerce
 
+# Delete a course
+```
+source /edx/app/edxapp/edxapp_env
+cd /edx/app/edxapp/edx-platform
+python manage.py cms dump_course_ids --settings=production # this command return courseID
+python manage.py cms delete_course <COURSE_ID> --settings=devstack 
+```
 
 # Troubleshoot
 > Lỗi Uh oh, we are having some server issues:
@@ -135,6 +142,7 @@ Nếu vẫn không truy cập được hệ thống, chạy lệnh sau để ch�
 ```
 $ sudo <path>/fixNginx.sh -r
 ```
+
 # Tài liệu tham khảo
 [Lauren Mc Daniel's Blog](https://blog.lawrencemcdaniel.com/category/open-edx/) - Các bài viết về việc cấu hình, cài đặt Open edX trên AWS-3
 
