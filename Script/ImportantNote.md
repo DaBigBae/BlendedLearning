@@ -135,3 +135,15 @@ Nếu vẫn không truy cập được hệ thống, chạy lệnh sau để ch�
 ```
 $ sudo <path>/fixNginx.sh -r
 ```
+# Tài liệu tham khảo
+[Lauren Mc Daniel's Blog](https://blog.lawrencemcdaniel.com/category/open-edx/) - Các bài viết về việc cấu hình, cài đặt Open edX trên AWS-3
+
+[Offical Document's Open edX](https://docs.edx.org/) - Trang document chính thức của Open edX
+
+[Open edX Document: Install, config...](https://edx.readthedocs.io/projects/edx-installing-configuring-and-running/en/latest/) - Document của Open edX về cài đặt, cấu hình và duy trì hệ thống
+
+[Open edX Course Catalog API user guide](http://course-catalog-api-guide.readthedocs.io/en/latest/) - Document cho api admin
+
+[Open edX api docs]() - http://\<LMS or CMS>/api_docs/
+
+[Open edX api admin]() - http://\<LMS or CMS>/api_admin

@@ -35,20 +35,20 @@ Help option:
 }
 
 main(){
-    sed -i -e "s/.*EDX_NOTES_API_MYSQL_DB_PASS:.*/EDX_NOTES_API_MYSQL_DB_PASS: \"$MYSQLDBPASS\"/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-    sed -i -e "s/.*EDX_NOTES_API_SECRET_KEY:.*/EDX_NOTES_API_SECRET_KEY: \"$SECRETKEY\"/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-    sed -i -e "s/.*EDX_NOTES_API_CLIENT_ID:.*/EDX_NOTES_API_CLIENT_ID: \"$CLIENTID\"/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-    sed -i -e "s/.*EDX_NOTES_API_CLIENT_SECRET:.*/EDX_NOTES_API_CLIENT_SECRET: \"$CLIENTSECRET\"/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-    #sed -i -e "s/.*EDX_NOTES_API_MYSQL_HOST.*/EDX_NOTES_API_MYSQL_HOST: $HOST/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-    #sed -i -e "s/.*EDX_NOTES_API_ELASTICSEARCH_URL.*/EDX_NOTES_API_ELASTICSEARCH_URL: $ELASTICSEARCHURL/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
-    #sed -i -e "s/.*EDX_NOTES_API_DATASTORE_NAME.*/EDX_NOTES_API_DATASTORE_NAME: $DATASTORE/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    sed -i -e "s/EDX_NOTES_API_MYSQL_DB_PASS:.*/EDX_NOTES_API_MYSQL_DB_PASS: \"$MYSQLDBPASS\"/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    sed -i -e "s/EDX_NOTES_API_SECRET_KEY:.*/EDX_NOTES_API_SECRET_KEY: \"$SECRETKEY\"/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    sed -i -e "s/EDX_NOTES_API_CLIENT_ID:.*/EDX_NOTES_API_CLIENT_ID: \"$CLIENTID\"/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    sed -i -e "s/EDX_NOTES_API_CLIENT_SECRET:.*/EDX_NOTES_API_CLIENT_SECRET: \"$CLIENTSECRET\"/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    #sed -i -e "s/EDX_NOTES_API_MYSQL_HOST.*/EDX_NOTES_API_MYSQL_HOST: $HOST/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    #sed -i -e "s/EDX_NOTES_API_ELASTICSEARCH_URL.*/EDX_NOTES_API_ELASTICSEARCH_URL: $ELASTICSEARCHURL/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
+    #sed -i -e "s/EDX_NOTES_API_DATASTORE_NAME.*/EDX_NOTES_API_DATASTORE_NAME: $DATASTORE/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
     #sed -i -e "s/EDX_NOTES_API_ALLOWED_HOST/EDX_NOTES_API_ALLOWED_HOST:\n\t$ALLOWHOST/" /edx/app/edx_ansible/edx_ansible/playbooks/roles/edx_notes_api/defaults/main.yml
     sed -i -e "s/ENABLE_EDXNOTES:.*/ENABLE_EDXNOTES: true/" /edx/etc/lms.yml
-    #sed -i -e "s/.*EDXNOTES_INTERNAL_API.*/EDXNOTES_INTERNAL_API: "https://127.0.0.1:18120/api/v1"/" /edx/etc/lms.yml
-    #sed -i -e "s/.*EDXNOTES_PUBLIC_API.*/EDXNOTES_PUBLIC_API: "https://127.0.0.1:18120/api/v1"/" /edx/etc/lms.yml
-    #sed -i -e "s/.*JWT_ISSUER.*/JWT_ISSUER: "http://localhost/oauth2"/" /edx/etc/lms.yml
+    #sed -i -e "s/EDXNOTES_INTERNAL_API.*/EDXNOTES_INTERNAL_API: "https://127.0.0.1:18120/api/v1"/" /edx/etc/lms.yml
+    #sed -i -e "s/EDXNOTES_PUBLIC_API.*/EDXNOTES_PUBLIC_API: "https://127.0.0.1:18120/api/v1"/" /edx/etc/lms.yml
+    #sed -i -e "s/JWT_ISSUER.*/JWT_ISSUER: "http://localhost/oauth2"/" /edx/etc/lms.yml
     # Comment role aws in roles
-    sed -i -e "s/- role: aws/# role: aws/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
+    sed -i -e "s/- role: aws/#- role: aws/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
     sed -i -e "s/when: COMMON_ENABLE_AWS_ROLE/# when: COMMON_ENABLE_AWS_ROLE/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
     
     # Create user and install Notes software with Ansible
