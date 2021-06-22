@@ -62,8 +62,8 @@ main(){
 #sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=edx_notes_api' -e@roles/edx_notes_api/defaults/main.yml
 #cd /edx/app/edx_ansible/edx_ansible/playbooks/edx-east
 #sudo ansible-playbook -i 'localhost,' -c local ./notes.yml
-#exit
-#EOF
+#
+# sudo su
 #   # Run Database Migrations in root
 #    export EDXNOTES_CONFIG_ROOT=/edx/etc/
 #    export DB_MIGRATION_USER=root
@@ -74,10 +74,11 @@ main(){
 #    sudo -H -u edxapp bash << EOF
 #source /edx/app/edxapp/edxapp_env
 #cd /edx/app/edxapp/edx-platform
-#paver update_assets cms --settings=production
-#paver update_assets lms --settings=production
+#paver update_assets cms --settings production
+#paver update_assets lms --settings production
 #exit
 #EOF
+# restatr platform
 }
 
 if (! getopts :p:k:i:s:d:h flag);
