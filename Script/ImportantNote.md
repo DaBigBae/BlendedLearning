@@ -130,7 +130,8 @@ cd /edx/app/edxapp/edx-platform
 python manage.py cms dump_course_ids --settings=production # this command return courseID
 python manage.py cms delete_course <COURSE_ID> --settings=devstack 
 ```
-
+## 7. Bật Switches (cho phép người học theo dõi quá trình học)
+Truy cập \<Your_LMS>/admin/waffle/switch/add/ thêm khoá với Name completion.enable_completion_tracking, check box Active
 # Troubleshoot
 > Lỗi Uh oh, we are having some server issues:
 

@@ -5,8 +5,8 @@
 
 MYSQLDBPASS="edXNotesAPIdbPass"
 SECRETKEY="edXNotesAPISeccret"
-CLIENTID="j1SYlYc2nQUyKM9jR1AIuSxpIbbSYmEH7S0nGOmJ"
-CLIENTSECRET="MDYAvVxbuUarXQwZ02smDXIFFCIv6UMb3y3dd05PkKZZJLdUHekd4rWqAauGe4hRXgbKddZFp3jk1CfJd8XOVPeq67IkFo9BUD5cWrctG6BIP7PVozS6ydLfRIRMchZn"
+CLIENTID="edx-notes-sso-key"
+CLIENTSECRET="edx-notes-sso-secret"
 #COMMON_MYSQL_ADMIN_PASS in /root/my-password.yml
 DBMIGRATIONPASS=
 #HOST="localhost"
@@ -55,13 +55,18 @@ main(){
     sed -i -e "s/when: COMMON_ENABLE_AWS_ROLE/# when: COMMON_ENABLE_AWS_ROLE/" /edx/app/edx_ansible/edx_ansible/playbooks/notes.yml
     
     # Create user and install Notes software with Ansible
-#    source /edx/app/edx_ansible/venvs/edx_ansible/bin/activate << EOF
-#cd /edx/app/edx_ansible/edx_ansible/playbooks
-#sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=edxlocal' -e@roles/edx_notes_api/defaults/main.yml
-#sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=nginx' -e 'nginx_sites=edx_notes_api' -e@roles/edx_notes_api/defaults/main.yml
-#sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=edx_notes_api' -e@roles/edx_notes_api/defaults/main.yml
-#cd /edx/app/edx_ansible/edx_ansible/playbooks/edx-east
-#sudo ansible-playbook -i 'localhost,' -c local ./notes.yml
+source /edx/app/edx_ansible/venvs/edx_ansible/bin/activate &&\
+cd /edx/app/edx_ansible/edx_ansible/playbooks &&\
+sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=edxlocal' -e@roles/edx_notes_api/defaults/main.yml
+source /edx/app/edx_ansible/venvs/edx_ansible/bin/activate &&\
+cd /edx/app/edx_ansible/edx_ansible/playbooks &&\
+sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=nginx' -e 'nginx_sites=edx_notes_api' -e@roles/edx_notes_api/defaults/main.yml
+source /edx/app/edx_ansible/venvs/edx_ansible/bin/activate &&\
+cd /edx/app/edx_ansible/edx_ansible/playbooks &&\
+sudo ansible-playbook -i 'localhost,' -c local ./run_role.yml -e 'role=edx_notes_api' -e@roles/edx_notes_api/defaults/main.yml
+source /edx/app/edx_ansible/venvs/edx_ansible/bin/activate &&\
+cd /edx/app/edx_ansible/edx_ansible/playbooks/edx-east &&\
+sudo ansible-playbook -i 'localhost,' -c local ./notes.yml
 #
 # sudo su
 #   # Run Database Migrations in root
