@@ -22,14 +22,14 @@ python manage.py makemigrations &&
 python manage.py migrate &&
 python manage.py create_or_update_site \
 	--site-id=1 \
-	--site-domain=localhost:18130 \
+	--site-domain=localhost:8002 \
 	--partner-code=edX \
 	--partner-name='Open edX' \
-	--lms-url-root=http://localhost \
+	--lms-url-root=http://localhost:80 \
 	--payment-processors=paypal \
 	--sso-client-id=ecommerce-sso-key \
 	--sso-client-secret=ecommerce-sso-secret \
-	--from-email=edx.ecommerce@example.com \
+	--from-email=ecommerce_worker@example.com \
 	--discovery_api_url=http://localhost:18381/ \
 	--backend-service-client-id=ecommerce-backend-service-key \
 	--backend-service-client-secret=ecommerce-backend-service-secret
