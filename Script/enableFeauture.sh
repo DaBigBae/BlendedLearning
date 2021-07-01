@@ -11,18 +11,17 @@ echo "Change value on lms.yml and studio.yml"
 sed -i "s/ENABLE_SPECIAL_EXAMS.*/ENABLE_SPECIAL_EXAM: true/" /edx/etc/lms.yml
 sed -i "s/ENABLE_SPECIAL_EXAMS.*/ENABLE_SPECIAL_EXAM: true/" /edx/etc/studio.yml
 sed -i "s/ENABLE_OTHER_COURSE_SETTINGS.*/ENABLE_OTHER_COURSE_SETTINGS: true/" /edx/etc/studio.yml
-sed -i "s/MILESTONES_APP.*/MILESTONES_APP: true/" /edx/etc/lms.yml
-sed -i "s/MILESTONES_APP.*/MILESTONES_APP: true/" /edx/etc/studio.yml
-sed -i "s/ENTRANCE_EXAMS.*/ENTRANCE_EXAMS: true/" /edx/etc/lms.yml
+#sed -i "s/MILESTONES_APP.*/MILESTONES_APP: true/" /edx/etc/studio.yml
+#sed -i "s/ENTRANCE_EXAMS.*/ENTRANCE_EXAMS: true/" /edx/etc/lms.yml
 sed -i "s/ENTRANCE_EXAMS.*/ENTRANCE_EXAMS: true/" /edx/etc/studio.yml
 sed -i "s/CUSTOM_COURSES_EDX.*/CUSTOM_COURSES_EDX: true/" /edx/etc/lms.yml
 sed -i "s/CUSTOM_COURSES_EDX.*/CUSTOM_COURSES_EDX: true/" /edx/etc/studio.yml
+sed -i "s/ENABLE_BULK_ENROLLMENT_VIEW.*/ENABLE_BULK_ENROLLMENT_VIEW: true/" /edx/etc/studio.yml
+sed -i "s/ENABLE_BULK_ENROLLMENT_VIEW.*/ENABLE_BULK_ENROLLMENT_VIEW: true/" /edx/etc/lms.yml
 sed -i "s/ENABLE_EDXNOTES.*/ENABLE_EDXNOTES: true/" /edx/etc/studio.yml
 sed -i "s/ENABLE_EDXNOTES.*/ENABLE_EDXNOTES: true/" /edx/etc/lms.yml
 sed -i "s/ENABLE_OAUTH2_PROVIDER.*/ENABLE_OAUTH2_PROVIDER: true/" /edx/etc/lms.yml
 sed -i "s/ENABLE_OAUTH2_PROVIDER.*/ENABLE_OAUTH2_PROVIDER: true/" /edx/etc/studio.yml
-sed -i "s/ENABLE_SPECIAL_EXAMS.*/ENABLE_SPECIAL_EXAMS: true/" /edx/etc/lms.yml
-sed -i "s/ENABLE_SPECIAL_EXAMS.*/ENABLE_SPECIAL_EXAMS: true/" /edx/etc/studio.yml
 
 # Run migrate database
 sudo -H -u edxapp bash << EOF
